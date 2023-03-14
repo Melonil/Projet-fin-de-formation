@@ -53,7 +53,7 @@ public class BanquierService implements CRUDService<BanquierDTO>{
 
 	@Override
 	public BanquierDTO update(BanquierDTO banquierDTO) {
-		Banquier banquier = banquierRepository.findById(banquierDTO.id()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));	
+		Banquier banquier = banquierRepository.findById(banquierDTO.id()).orElseThrow(() -> new RuntimeException("Banquier non trouvé"));	
 		Agence agence = agenceRepository.findById(banquierDTO.idAgence()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));
 		
 		banquier.setAgence(agence);
