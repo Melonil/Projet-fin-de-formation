@@ -1,5 +1,7 @@
 package com.m2i.java.model;
 
+import java.sql.Date;
+
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,13 +11,14 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 @Entity
+@Getter
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
 public class Banquier extends Personne{
 	
 	@Id
@@ -29,6 +32,18 @@ public class Banquier extends Personne{
 	@ManyToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn(name="idAgence")
 	private Agence agence;
+	
+	public Banquier() {
+		super();
+	}
+	
+	@Builder
+	public Banquier(String nom, String prenom, Date dateNaissance, Long id, String numEmploye, Agence agence) {
+		super(nom, prenom, dateNaissance);
+		this.id = id;
+		this.numEmploye = numEmploye;
+		this.agence = agence;
+	}
 
 	@Override
 	public String toString() {
@@ -42,5 +57,6 @@ public class Banquier extends Personne{
 		builder.append("]");
 		return builder.toString();
 	}
+
 
 }
