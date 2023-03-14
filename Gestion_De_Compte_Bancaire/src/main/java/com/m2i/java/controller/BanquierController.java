@@ -39,7 +39,7 @@ public class BanquierController {
 						null,
 						"Banquier retrieved",
 						null,
-						Map.of("comptes",banquierService.list(30))
+						Map.of("banquiers",banquierService.list(30))
 				)
 		);
 				
@@ -55,7 +55,7 @@ public class BanquierController {
 						null,
 						"Banquier retrieved",
 						null,
-						Map.of("compte",banquierService.get(id))
+						Map.of("banquier",banquierService.get(id))
 				)
 		);
 				
@@ -70,16 +70,16 @@ public class BanquierController {
 						HttpStatus.CREATED.value(),
 						HttpStatus.CREATED,
 						null,
-						"Compte created",
+						"Banquier created",
 						null,
-						Map.of("compte",banquierService.create(banquierDTO))
+						Map.of("banquier",banquierService.create(banquierDTO))
 				)
 		);
 				
 	}
 	
 	@PutMapping("/save")
-	public ResponseEntity<Response> updateCompte(@RequestBody BanquierDTO banquierDTO){
+	public ResponseEntity<Response> updateBanquier(@RequestBody BanquierDTO banquierDTO){
 		return ResponseEntity.ok(
 				new Response(
 						LocalDateTime.now(), 
@@ -88,14 +88,14 @@ public class BanquierController {
 						null,
 						"Banquier updated",
 						null,
-						Map.of("compte",banquierService.update(banquierDTO))
+						Map.of("banquier",banquierService.update(banquierDTO))
 				)
 		);
 				
 	}
 	
 	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<Response>	deleteCompte(@PathVariable("id") Long id){
+	public ResponseEntity<Response>	deleteBanquier(@PathVariable("id") Long id){
 		return ResponseEntity.ok(
 				new Response(
 						LocalDateTime.now(), 
