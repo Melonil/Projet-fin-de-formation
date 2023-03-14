@@ -57,6 +57,9 @@ public class BanquierService implements CRUDService<BanquierDTO>{
 		Agence agence = agenceRepository.findById(banquierDTO.idAgence()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));
 		
 		banquier.setAgence(agence);
+		banquier.setNom(banquierDTO.nom());
+		banquier.setPrenom(banquierDTO.prenom());
+		banquier.setDateNaissance(banquierDTO.dateNaissance());
 		
 		System.out.println("Updating Banquier : " + banquierDTO.numEmploye());
 		Banquier updatedBanquier = banquierRepository.save(banquier);
