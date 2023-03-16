@@ -1,0 +1,124 @@
+{
+	"info": {
+		"_postman_id": "7ad12cea-0e2e-46a7-b1e5-a8768e45bdfa",
+		"name": "Test Backend Ressources",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Compte",
+			"item": [
+				{
+					"name": "Get all comptes",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compte/list",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compte",
+								"list"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Add Compte",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"numCompte\":\"CO-RA078\",\r\n    \"decouvertAutorise\": 300,\r\n    \"idAgence\":1,\r\n    \"idClient\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/compte/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compte",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Compte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": ""
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Compte",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"id\":1,\r\n    \"numCompte\":\"CO-RA01\",\r\n    \"decouvertAutorise\": 200,\r\n    \"idAgence\":1,\r\n    \"idClient\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/compte/save",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compte",
+								"save"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Compte",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/compte/delete/14",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"compte",
+								"delete",
+								"14"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
