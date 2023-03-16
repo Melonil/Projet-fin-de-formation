@@ -1,6 +1,5 @@
 package com.m2i.java.model;
 
-import java.sql.Date;
 
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
@@ -10,16 +9,15 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import lombok.AllArgsConstructor;
+import jakarta.persistence.OneToOne;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 
 @Entity
 @Getter
 @Data
-public class Banquier extends Personne{
+public class Banquier extends UserAccount{
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -33,16 +31,21 @@ public class Banquier extends Personne{
 	@JoinColumn(name="idAgence")
 	private Agence agence;
 	
+	@OneToOne(cascade = CascadeType.REFRESH)
+	@JoinColumn(name="idUserDetails")
+	private UserDetails userDetails;
+	
 	public Banquier() {
 		super();
 	}
 	
 	@Builder
-	public Banquier(String nom, String prenom, Date dateNaissance, Long id, String numEmploye, Agence agence) {
-		super(nom, prenom, dateNaissance);
+	public Banquier(Long id, String numEmploye, String login , String password, ROLE role, Agence agence, UserDetails userDetails) {
+		super(login, password, role);
 		this.id = id;
 		this.numEmploye = numEmploye;
 		this.agence = agence;
+		this.userDetails = userDetails;
 	}
 
 	@Override

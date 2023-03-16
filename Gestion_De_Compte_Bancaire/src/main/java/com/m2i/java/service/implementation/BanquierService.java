@@ -10,8 +10,10 @@ import com.m2i.java.DTO.BanquierDTO;
 import com.m2i.java.DTO.BanquierDTOMapper;
 import com.m2i.java.model.Agence;
 import com.m2i.java.model.Banquier;
+import com.m2i.java.model.UserDetails;
 import com.m2i.java.repository.AgenceRepository;
 import com.m2i.java.repository.BanquierRepository;
+import com.m2i.java.repository.UserDetailsRepository;
 import com.m2i.java.service.CRUDService;
 
 @Service
@@ -19,13 +21,16 @@ public class BanquierService implements CRUDService<BanquierDTO>{
 	
 	private final BanquierRepository banquierRepository;
 	private final AgenceRepository agenceRepository;
+	private final UserDetailsRepository userDetailsRepository;
 	private BanquierDTOMapper banquierDTOMapper;
 	
 	
 
-	public BanquierService(BanquierRepository banquierRepository, AgenceRepository agenceRepository, BanquierDTOMapper banquierDTOMapper) {
+	public BanquierService(BanquierRepository banquierRepository, AgenceRepository agenceRepository,
+			UserDetailsRepository userDetailsRepository, BanquierDTOMapper banquierDTOMapper) {
 		this.banquierRepository = banquierRepository;
 		this.agenceRepository = agenceRepository;
+		this.userDetailsRepository = userDetailsRepository;
 		this.banquierDTOMapper = banquierDTOMapper;
 	}
 
@@ -41,8 +46,9 @@ public class BanquierService implements CRUDService<BanquierDTO>{
 	@Override
 	public BanquierDTO create(BanquierDTO banquierDTO) {
 		Agence agence = agenceRepository.findById(banquierDTO.idAgence()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));
+		UserDetails userDetails = userDetailsRepository.findById(banquierDTO.idUserDetails()).orElseThrow(() -> new RuntimeException("UserDetails non trouvé"));
 		
-		Banquier banquierToCreate = banquierDTOMapper.map(banquierDTO, agence);
+		Banquier banquierToCreate = banquierDTOMapper.map(banquierDTO, agence, userDetails);
 		
 		System.out.println("Saving new Banquier : " + banquierDTO.numEmploye());
 		System.out.println(banquierDTO.toString());
@@ -55,11 +61,14 @@ public class BanquierService implements CRUDService<BanquierDTO>{
 	public BanquierDTO update(BanquierDTO banquierDTO) {
 		Banquier banquier = banquierRepository.findById(banquierDTO.id()).orElseThrow(() -> new RuntimeException("Banquier non trouvé"));	
 		Agence agence = agenceRepository.findById(banquierDTO.idAgence()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));
+		UserDetails userDetails = userDetailsRepository.findById(banquierDTO.idUserDetails()).orElseThrow(() -> new RuntimeException("UserDetails non trouvé"));
+
 		
+		banquier.setLogin(banquierDTO.login());
+		banquier.setPassword(banquierDTO.password());
+		banquier.setRole(banquierDTO.role());
 		banquier.setAgence(agence);
-		banquier.setNom(banquierDTO.nom());
-		banquier.setPrenom(banquierDTO.prenom());
-		banquier.setDateNaissance(banquierDTO.dateNaissance());
+		banquier.setUserDetails(userDetails);
 		
 		System.out.println("Updating Banquier : " + banquierDTO.numEmploye());
 		Banquier updatedBanquier = banquierRepository.save(banquier);
