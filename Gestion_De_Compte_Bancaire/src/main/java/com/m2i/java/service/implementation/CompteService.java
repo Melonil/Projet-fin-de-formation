@@ -1,8 +1,10 @@
 package com.m2i.java.service.implementation;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import com.m2i.java.DTO.OperationDTO;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -60,6 +62,7 @@ public class CompteService implements CRUDService<CompteDTO> {
 		
 		Compte compte = compteRepository.findById(compteDTO.id()).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
 		compte.setDecouvertAutorise(compteDTO.decouvertAutorise());
+		compte.setSolde(compteDTO.solde());
 		
 		Compte updatedCompte = compteRepository.save(compte);
 		return compteDTOMapper.map(updatedCompte);
@@ -68,7 +71,8 @@ public class CompteService implements CRUDService<CompteDTO> {
 	@Override
 	public CompteDTO get(Long id) {
 		System.out.println("Retriving  Compte by ID :"+id);
-		return compteRepository.findById(id).map(compte -> compteDTOMapper.map(compte)).get();
+		Compte retrivedCompte = compteRepository.findById(id).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
+		return compteDTOMapper.map(retrivedCompte);
 	}
 
 	@Override
@@ -76,6 +80,10 @@ public class CompteService implements CRUDService<CompteDTO> {
 		System.out.println("Deleting Compte by ID :"+id);
 		compteRepository.deleteById(id);
 		return true;
+	}
+
+	public OperationDTO withdraw(Long id, float amount) {
+		return null;
 	}
 
 

@@ -12,13 +12,12 @@ import com.m2i.java.model.Compte;
 @Component
 public class CompteDTOMapper {
 
-	
 	public CompteDTO map(Compte compte) {
-		return new CompteDTO(compte.getId(),compte.getNumCompte(),compte.getDecouvertAutorise(),compte.getAgence().getId(),compte.getClient().getId());
+		return new CompteDTO(compte.getId(),compte.getNumCompte(),compte.getDecouvertAutorise(),compte.getAgence().getId(),compte.getClient().getId(), compte.getSolde());
 	}
 	
 	public Compte map(CompteDTO compteDTO,Agence agence,Client client) {
-		return new Compte(compteDTO.id(),compteDTO.numCompte(),compteDTO.decouvertAutorise(),agence,client);
+		return new Compte(compteDTO.id(),compteDTO.numCompte(),compteDTO.decouvertAutorise(),agence,client,compteDTO.solde());
 	}
 
 }

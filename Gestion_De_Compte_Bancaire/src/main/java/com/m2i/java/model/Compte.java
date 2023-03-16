@@ -38,13 +38,16 @@ public class Compte {
 	@OneToOne(cascade = CascadeType.REFRESH)
 	@JoinColumn( name="idClient" )
 	private Client client;
-	
+
+
+	private float solde;
 	
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Compte [id=").append(id).append(", numCompte=").append(numCompte).append(", decouvertAutorise=")
-				.append(decouvertAutorise).append(", agence=").append(agence).append(", client=").append(client)
+				.append(decouvertAutorise).append(", solde=")
+				.append(solde).append(", agence=").append(agence).append(", client=").append(client)
 				.append("]");
 		return builder.toString();
 	}

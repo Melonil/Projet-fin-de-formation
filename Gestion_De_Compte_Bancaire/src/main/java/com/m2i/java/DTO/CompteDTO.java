@@ -9,7 +9,8 @@ public record CompteDTO(
 		String numCompte,
 		float decouvertAutorise,
 		Long idAgence,
-		Long idClient
+		Long idClient,
+		float solde
 ) {
 
 }
