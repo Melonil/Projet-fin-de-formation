@@ -6,20 +6,25 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-public class Client {
+@EqualsAndHashCode(callSuper=true)
+public class Client extends UserDetailsClient {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(nullable=false,updatable=false)
 	private Long id;
+	
+	@Column(nullable=false,updatable=false)
+	private String idClient;
+	
+	@Column(nullable=false,updatable=false)
+	private String numClient;
 
-	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Client [id=").append(id).append("]");
-		return builder.toString();
+		return "Client(super=" + super.toString() + ", id=" + id + ", idClient=" + idClient + ", numClient=" + numClient + ")";
 	}
 	
 }
