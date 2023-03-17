@@ -4,5 +4,6 @@ public record OperationDTO(
     Long idCompte,
     float montant
 
+
     ){
 }

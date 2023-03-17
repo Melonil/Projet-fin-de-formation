@@ -82,8 +82,23 @@ public class CompteService implements CRUDService<CompteDTO> {
 		return true;
 	}
 
-	public OperationDTO withdraw(Long id, float amount) {
-		return null;
+	public CompteDTO withdraw(Long id, float amount) {
+		Compte compte = compteRepository.findById(id).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
+		if(compte.getSolde() - amount >= compte.getDecouvertAutorise()) {
+			compte.setSolde(compte.getSolde() - amount);
+			compteRepository.save(compte);
+			return compteDTOMapper.map(compte);
+		}else{
+			throw new RuntimeException("Solde insuffisant");
+		}
+	}
+
+
+	public CompteDTO deposit(Long id, float amount) {
+		Compte compte = compteRepository.findById(id).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
+		compte.setSolde(compte.getSolde() + amount);
+		compteRepository.save(compte);
+		return compteDTOMapper.map(compte);
 	}
 
 

@@ -9,7 +9,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.m2i.java.DTO.CompteDTO;
-import com.m2i.java.model.Compte;
 import com.m2i.java.model.Response;
 import com.m2i.java.service.implementation.CompteService;
 
@@ -106,7 +105,7 @@ public class CompteController {
 				
 	}
 
-	@GetMapping("/retrait")
+	@GetMapping("/withdraw")
 	public ResponseEntity<Response> withdraw(@RequestBody OperationDTO operationDTO ){
 		return ResponseEntity.ok(
 				new Response(
@@ -117,6 +116,21 @@ public class CompteController {
 						"Opération de retrait effectuée",
 						null,
 						Map.of("operation",compteService.withdraw(operationDTO.idCompte(),operationDTO.montant()))
+				)
+		);
+	}
+
+	@GetMapping("/deposit")
+	public ResponseEntity<Response> deposit(@RequestBody OperationDTO operationDTO ){
+		return ResponseEntity.ok(
+				new Response(
+						LocalDateTime.now(),
+						HttpStatus.OK.value(),
+						HttpStatus.OK,
+						null,
+						"Opération de dépôt effectuée",
+						null,
+						Map.of("operation",compteService.deposit(operationDTO.idCompte(),operationDTO.montant()))
 				)
 		);
 	}
