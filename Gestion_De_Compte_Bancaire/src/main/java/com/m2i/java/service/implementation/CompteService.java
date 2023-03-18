@@ -105,7 +105,7 @@ public class CompteService implements CRUDService<CompteDTO> {
 		Compte compte = compteRepository.findById(id).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
 		compte.setSolde(compte.getSolde() + amount);
 		compteRepository.save(compte);
-		operationService.saveOperation(new Operation(null,compte,amount, LocalDateTime.now(),TypeOperation.RETRAIT));
+		operationService.saveOperation(new Operation(null,compte,amount, LocalDateTime.now(),TypeOperation.DEPOT));
 		return compteDTOMapper.map(compte);
 	}
 

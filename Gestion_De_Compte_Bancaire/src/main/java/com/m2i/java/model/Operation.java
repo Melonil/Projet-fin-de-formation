@@ -3,12 +3,16 @@ package com.m2i.java.model;
 
 import com.m2i.java.ENUM.TypeOperation;
 import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.sql.Date;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
+@NoArgsConstructor
+@Data
 public class Operation {
     @Id
     @Column(nullable=false,updatable=false)
@@ -33,5 +37,18 @@ public class Operation {
         this.montant = montant;
         this.dateOperation = dateOperation;
         this.typeOperation = typeOperation;
+    }
+
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Operation{");
+        sb.append("id=").append(id);
+        sb.append(", compte=").append(compte);
+        sb.append(", montant=").append(montant);
+        sb.append(", dateOperation=").append(dateOperation);
+        sb.append(", typeOperation=").append(typeOperation);
+        sb.append('}');
+        return sb.toString();
     }
 }

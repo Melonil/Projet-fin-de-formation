@@ -3,7 +3,7 @@ package com.m2i.java.controller;
 import java.time.LocalDateTime;
 import java.util.Map;
 
-import com.m2i.java.DTO.OperationDTO;
+import com.m2i.java.DTO.RetraitDepotInfosDTO;
 import com.m2i.java.service.implementation.OperationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -94,27 +94,27 @@ public class CompteController {
 	}
 
 	@GetMapping("/withdraw")
-	public ResponseEntity<Response> retrait(@RequestBody OperationDTO operationDTO ){
+	public ResponseEntity<Response> retrait(@RequestBody RetraitDepotInfosDTO retraitDepotInfosDTO){
 		return ResponseEntity.ok(
 			Response.builder()
 				.timeStamp(LocalDateTime.now())
 				.status(HttpStatus.OK)
 				.statusCode(HttpStatus.OK.value())
 				.message("Opération de retrait effectuée")
-				.data(Map.of("operation",compteService.retrait(operationDTO.idCompte(),operationDTO.montant(),operationService)))
+				.data(Map.of("compte",compteService.retrait(retraitDepotInfosDTO.idCompte(), retraitDepotInfosDTO.montant(),operationService)))
 				.build()
 		);
 	}
 
 	@GetMapping("/deposit")
-	public ResponseEntity<Response> depot(@RequestBody OperationDTO operationDTO ){
+	public ResponseEntity<Response> depot(@RequestBody RetraitDepotInfosDTO retraitDepotInfosDTO){
 		return ResponseEntity.ok(
 			Response.builder()
 				.timeStamp(LocalDateTime.now())
 				.status(HttpStatus.OK)
 				.statusCode(HttpStatus.OK.value())
 				.message("Opération de dépôt effectuée")
-				.data(Map.of("operation",compteService.depot(operationDTO.idCompte(),operationDTO.montant(),operationService)))
+				.data(Map.of("compte",compteService.depot(retraitDepotInfosDTO.idCompte(), retraitDepotInfosDTO.montant(),operationService)))
 				.build()
 		);
 	}

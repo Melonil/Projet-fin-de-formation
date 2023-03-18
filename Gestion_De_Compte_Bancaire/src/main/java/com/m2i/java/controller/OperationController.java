@@ -23,7 +23,7 @@ public class OperationController {
     
     @GetMapping("/list/{id}")
     public ResponseEntity<Response> getOperations(@PathVariable("id") Long idCompte){
-
+        System.out.println(operationService.list(idCompte,30));
         return ResponseEntity.ok(
             Response.builder()
                 .timeStamp(LocalDateTime.now())
