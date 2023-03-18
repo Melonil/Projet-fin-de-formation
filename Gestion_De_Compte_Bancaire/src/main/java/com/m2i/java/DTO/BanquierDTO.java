@@ -1,6 +1,6 @@
 package com.m2i.java.DTO;
 
-import com.m2i.java.model.ROLE;
+import com.m2i.java.ENUM.ROLE;
 
 public record BanquierDTO(
 		Long id,

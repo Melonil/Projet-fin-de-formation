@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import jakarta.persistence.CascadeType;
+import lombok.experimental.SuperBuilder;
 
 
 @Entity

@@ -1,6 +1,7 @@
 package com.m2i.java.model;
 
 
+import com.m2i.java.ENUM.ROLE;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
