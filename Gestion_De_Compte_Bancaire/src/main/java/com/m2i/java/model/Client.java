@@ -10,21 +10,12 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper=true)
-public class Client extends UserDetailsClient {
+public class Client {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(nullable=false,updatable=false)
 	private Long id;
-	
-	@Column(nullable=false,updatable=false)
-	private String idClient;
-	
-	@Column(nullable=false,updatable=false)
-	private String numClient;
 
-	public String toString() {
-		return "Client(super=" + super.toString() + ", id=" + id + ", idClient=" + idClient + ", numClient=" + numClient + ")";
-	}
+
 	
 }

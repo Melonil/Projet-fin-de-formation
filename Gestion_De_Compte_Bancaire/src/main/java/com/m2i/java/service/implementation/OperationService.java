@@ -20,6 +20,6 @@ public class OperationService {
     }
 
     public List<Operation> list(Long idCompte,int limit){
-        return operationRepository.findAllByIdCompte(idCompte,PageRequest.of(0, limit));
+        return operationRepository.findAllByCompteId(idCompte,PageRequest.of(0, limit));
     }
 }
