@@ -4,12 +4,14 @@ import com.m2i.java.model.Response;
 import com.m2i.java.service.implementation.OperationService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.util.Map;
 
+@RestController
+@CrossOrigin
+@RequestMapping("/operation")
 public class OperationController {
 
     private final OperationService operationService;
@@ -19,7 +21,7 @@ public class OperationController {
         this.operationService = operationService;
     }
     
-    @GetMapping("/list")
+    @GetMapping("/list/{id}")
     public ResponseEntity<Response> getOperations(@PathVariable("id") Long idCompte){
 
         return ResponseEntity.ok(
