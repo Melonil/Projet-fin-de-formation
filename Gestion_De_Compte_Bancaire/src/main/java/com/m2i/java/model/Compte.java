@@ -46,8 +46,16 @@ public class Compte {
 
 	@Column(nullable=false,updatable=false)
 	private LocalDateTime dateCreation;
-	
-	@Override
+
+	public Compte(Compte compte) {
+		this.id = compte.id;
+		this.numCompte = compte.numCompte;
+		this.decouvertAutorise = compte.decouvertAutorise;
+		this.agence = compte.getAgence();
+		this.client = compte.getClient();
+	}
+
+    @Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("Compte [id=").append(id).append(", numCompte=").append(numCompte).append(", decouvertAutorise=")

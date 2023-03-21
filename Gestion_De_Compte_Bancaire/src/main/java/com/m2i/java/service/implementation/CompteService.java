@@ -42,7 +42,6 @@ public class CompteService implements CRUDService<CompteDTO> {
 	public Collection<CompteDTO> list(int limit) {
 		System.out.println("Fetching all Comptes");
 		return compteRepository.findAll(PageRequest.of(0,limit))
-				.toList()
 				.stream()
 				.map(compte -> compteDTOMapper.map(compte)).collect(Collectors.toList());
 	}
