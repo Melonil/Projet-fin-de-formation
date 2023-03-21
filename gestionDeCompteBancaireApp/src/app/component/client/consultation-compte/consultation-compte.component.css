@@ -1,0 +1,27 @@
+.mycard-header {
+    background-repeat: repeat-x;
+    background-image: linear-gradient(119deg, #1a2e45, #003883);
+    color: white;
+    text-align:center;
+}
+
+
+.myButtonOperation{
+    background-repeat: repeat-x;
+    background-image: linear-gradient(119deg, #315b89, #0c5dc7);
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    font-size: 12px;
+    margin: 4px 10px;
+    cursor: pointer;
+    border-radius: 12px;
+}
+
+.modal-header{
+    background-repeat: repeat-x;
+    background-image: linear-gradient(119deg, #1a2e45, #003883);
+    color:white;
+}

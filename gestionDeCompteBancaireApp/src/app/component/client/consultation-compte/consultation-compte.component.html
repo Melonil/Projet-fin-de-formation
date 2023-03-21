@@ -1,0 +1,123 @@
+<div class="container">
+        <br/>
+        <h2 style="font-size:13px;color: #003883;font-weight: 600;margin: 0 0.6rem 0 0;">M2i Banque : {{compte?.numCompte}}</h2>
+        <br/>
+        <br/>
+        <div class="card mycard-header" style="max-width: 500px;margin: auto;">
+                <div class="card-body">
+                        <div class="row">
+                                <div class="col-sm-6">
+                                        <div style="padding:0.5rem;border-color: #1b599c;border-width: 2px;border-right: 0.1rem solid;">
+                                                <div style="font-size: 10px !important;">Solde disponible au  {{formatDate(dateDuJour) }}</div>
+                                                <div style="font-weight: 600 !important;">{{compte?.solde}} €</div>
+                                        </div>
+                                </div>
+                                <div class="col-sm-6">
+                                        <div style="padding:0.5rem">
+                                                <div style="font-size: 10px !important;">Découvert autorisé</div>
+                                                <div style="font-weight: 600 !important;">{{compte?.decouvertAutorise}} €</div>
+                                        </div>
+                                </div>
+                        </div>
+                </div>
+                
+        </div>
+        <br/>
+        <br/>
+        <div style="text-align: center;">
+                <button type="button" class="btn btn-primary myButtonOperation"  data-bs-toggle="modal" data-bs-target="#retraitModal">Retrait</button>
+                <button type="button" class="btn btn-primary myButtonOperation"  data-bs-toggle="modal" data-bs-target="#depotModal">Depot</button>
+             
+        </div>
+        <br/>
+        <br/>
+        <h2 style="font-size:16px;color: #003883;font-weight: 600;margin: 0 0.6rem 0 0;">Historique des opérations :</h2>
+        <br/>
+        <table class="table">
+                <thead>
+                  <tr>
+                    <th scope="col">Type</th>
+                    <th scope="col">Date</th>
+                    <th scope="col">Montant</th>
+                  </tr>
+                </thead>
+                <tbody>
+                        <tr *ngFor="let operation of operations">
+                                <td>{{operation.typeOperation }}</td>
+                                <td>{{this.formatDate(operation.dateOperation)}}</td>
+                                <td>{{operation.montant}}</td>
+                        </tr>
+                </tbody>
+              </table>
+
+        
+        
+
+</div>
+<br>
+<br>
+<br>
+<br>
+
+      
+<!-- Modal -->
+<div class="modal fade" id="retraitModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal-dialog">
+        <form [formGroup]="formRetrait">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Retrait</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        
+        <div class="form-outline">
+        <label class="form-label" for="montantRetrait">Saisir le montant à retirer :</label>
+        <input  formControlName="montantRetrait" type="number" id="montantRetrait" class="form-control"/>
+        <div class="text-danger" *ngIf="formRetrait.controls['montantRetrait'].errors?.['min']">
+                Le montant doit être positif
+        </div>
+        <div class="text-danger" *ngIf="formRetrait.controls['montantRetrait'].errors?.['required']">
+                Renseigner une valeur
+        </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button"  id="closeModalRetrait" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="this.retrait()" [disabled]="formRetrait.invalid">Retirer</button>
+        </div>
+        </div>
+        </form>
+</div>
+</div>
+
+<!-- Modal Depot -->
+<div class="modal fade" id="depotModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <form [formGroup]="formDepot">
+        <div class="modal-content">
+        <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Depot</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        
+        <div class="form-outline">
+        <label class="form-label" for="montantDepot">Saisir le montant à déposer :</label>
+        <input  formControlName="montantDepot" type="number" id="montantDepot" class="form-control"/>
+        <div class="text-danger" *ngIf="formDepot.controls['montantDepot'].errors?.['min']">
+                Le montant doit être positif
+        </div>
+        <div class="text-danger" *ngIf="formDepot.controls['montantDepot'].errors?.['required']">
+                Renseigner une valeur
+        </div>
+        </div>
+        </div>
+        <div class="modal-footer">
+        <button type="button"  id="closeModalDepot" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" (click)="this.depot()" [disabled]="formDepot.invalid">Déposer</button>
+        </div>
+        </div>
+        </form>
+</div>
+</div>

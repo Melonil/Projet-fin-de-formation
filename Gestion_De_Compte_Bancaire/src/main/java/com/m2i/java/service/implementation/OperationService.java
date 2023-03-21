@@ -31,6 +31,6 @@ public class OperationService {
 
     public List<OperationDTO> list(Long idCompte, int limit){
         Compte compte = compteRepository.findById(idCompte).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
-        return operationRepository.findAllByCompte(compte).stream().map(operation -> operationDTOMapper.map(operation)).toList();
+        return operationRepository.findAllByCompteOrderByDateOperationDesc(compte).stream().map(operation -> operationDTOMapper.map(operation)).toList();
     }
 }

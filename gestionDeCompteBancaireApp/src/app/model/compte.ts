@@ -8,6 +8,6 @@ export interface Compte {
     dateCreation: Date;
     client: Client;
     agence: Agence;
-    decouverAutorise: number;
+    decouvertAutorise: number;
     
 }

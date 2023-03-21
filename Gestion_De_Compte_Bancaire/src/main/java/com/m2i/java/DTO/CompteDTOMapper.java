@@ -18,7 +18,7 @@ public class CompteDTOMapper {
 	}
 	
 	public Compte map(CompteDTO compteDTO,Agence agence,Client client) {
-		return new Compte(compteDTO.id(),compteDTO.numCompte(),compteDTO.decouvertAutorise(),agence,client,compteDTO.solde());
+		return new Compte(compteDTO.id(),compteDTO.numCompte(),compteDTO.decouvertAutorise(),agence,client,compteDTO.solde(),null);
 	}
 
 }

@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 import jakarta.persistence.CascadeType;
 import lombok.experimental.SuperBuilder;
 
+import java.time.LocalDateTime;
+
 
 @Entity
 @Data
@@ -40,8 +42,10 @@ public class Compte {
 	@JoinColumn( name="idClient" )
 	private Client client;
 
-
 	private float solde;
+
+	@Column(nullable=false,updatable=false)
+	private LocalDateTime dateCreation;
 	
 	@Override
 	public String toString() {

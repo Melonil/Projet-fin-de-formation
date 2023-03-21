@@ -53,9 +53,9 @@ public class CompteService implements CRUDService<CompteDTO> {
 	    Client client = clientRepository.findById(compteDTO.idClient()).orElseThrow(() -> new RuntimeException("Client non trouvé"));
 
 	    Compte compteToCreate = compteDTOMapper.map(compteDTO, agence, client);
-		
+		compteToCreate.setDateCreation(LocalDateTime.now());
 		System.out.println("Saving new Compte :"+compteDTO.numCompte());
-		System.out.println(compteDTO.toString());
+		System.out.println(compteDTO);
 		Compte savedCompte = compteRepository.save(compteToCreate);
 		
 		return compteDTOMapper.map(savedCompte);
@@ -106,6 +106,13 @@ public class CompteService implements CRUDService<CompteDTO> {
 		compte.setSolde(compte.getSolde() + amount);
 		compteRepository.save(compte);
 		operationService.saveOperation(new Operation(null,compte,amount, LocalDateTime.now(),TypeOperation.DEPOT));
+		return compteDTOMapper.map(compte);
+	}
+
+
+	public CompteDTO getCompteByIdClient(Long idClient){
+		Client client = clientRepository.findById(idClient).orElseThrow(() -> new RuntimeException("Client non trouvé"));
+		Compte compte = compteRepository.findFirstCompteByClientOrderByDateCreation(client);
 		return compteDTOMapper.map(compte);
 	}
 
