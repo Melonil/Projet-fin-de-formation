@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 @Entity
 @Getter
 @Data
-public class Client extends UserAccount {
+public class Client extends UserDetailsClient {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
