@@ -6,5 +6,5 @@ import com.m2i.java.model.Client;
 import com.m2i.java.model.Compte;
 
 public interface ClientRepository  extends JpaRepository<Client,Long> {
-
+    Client findByNumCompte(String numCompte);
 }
