@@ -26,9 +26,11 @@ public class UserService {
 
 
     public UserDTO authenticate(AuthenticateDTO authenticateDTO) {
-        UserAccount useraccount = userRepository.findByLoginAndPassword(authenticateDTO.getLogin(), authenticateDTO.getPassword()).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé non trouvé"));
+        System.out.println(authenticateDTO.getLogin() +" "+ authenticateDTO.getPassword());
+        UserAccount useraccount = userRepository.findByLoginAndPassword(authenticateDTO.getLogin(), authenticateDTO.getPassword()).orElseThrow(() -> new RuntimeException("Utilisateur non trouvé"));
 
-        if(useraccount.getRole().equals("ADMIN")) {
+        if(useraccount.getRole().equals(ROLE.BANQUIER)) {
+            System.out.println(userDTOMapper.map((Banquier)useraccount));
             return userDTOMapper.map((Banquier)useraccount);
         }else{
             return userDTOMapper.map((Client)useraccount);

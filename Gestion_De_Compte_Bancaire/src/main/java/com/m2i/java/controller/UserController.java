@@ -19,12 +19,12 @@ public class UserController {
     }
 
 
-   /* @PostMapping("/authenticate")
-    public ResponseEntity<UserDTO> saveCompte(@RequestBody AuthenticateDTO authenticateDTO){
-        userService.createUser();
+    @PostMapping("/authenticate")
+    public ResponseEntity<UserDTO> authenticate(@RequestBody AuthenticateDTO authenticateDTO){
+
         return ResponseEntity.ok(
                 userService.authenticate(authenticateDTO)
         );
 
-    }*/
+    }
 }
