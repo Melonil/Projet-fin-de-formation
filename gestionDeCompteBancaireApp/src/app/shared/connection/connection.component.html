@@ -5,7 +5,7 @@
 <div class="container justify-content-center pb-4 p-4" style="margin:auto;width:100%">
     <div class="row justify-content-center" >
       <div style="text-align: center;color:#1b599c;display:inline"><img style="width:40px" src="../assets/logo_site.png" class="mb-3"/> <h2>M2i Banque</h2></div>
-    <form style="width: 22rem;text-align: center;background-color:white;border-top:10px solid #1b599c;border-radius: 5px;" class="justify-content-center p-4">
+    <form [formGroup]="formConnection" style="width: 22rem;text-align: center;background-color:white;border-top:10px solid #1b599c;border-radius: 5px;" class="justify-content-center p-4">
      
       <div style="color: #667e9b;font-size: 10px;">Veuillez toujours vérifier que vous êtes sur la bonne adresse</div>
         <div style="width: 70%;margin: auto;border: 1px solid #d8e1ee;padding: 8px 16px 8px 16px;border-radius: 10rem;font-size: 10px;display:ineline-flex">
@@ -15,12 +15,16 @@
         <br/>
         <!-- Email input -->
     <div class="form-outline mb-4 mt-4">
-      <input type="email" id="form2Example1" class="form-control" placeholder="Saisissez votre identifiant"/>
+      <input  formControlName="login" type="email" id="form2Example1" class="form-control" placeholder="Saisissez votre identifiant"/>
     </div>
   
     <!-- Password input -->
     <div class="form-outline mb-4">
-      <input type="password" id="form2Example2" class="form-control" placeholder="Mot de passe"/>
+      <input  formControlName="password" type="password" id="form2Example2" class="form-control" placeholder="Mot de passe"/>
+    </div>        
+    
+    <div class="text-danger" *ngIf="">
+      Les identifiants sont incorrects
     </div>
   
     <!-- 2 column grid layout for inline styling -->
@@ -34,7 +38,7 @@
     </div>
   
     <!-- Submit button -->
-    <button (click)="this.connect()" type="button" class="btn btn-primary btn-block mb-4">Connexion</button>
+    <button [disabled]="formConnection.invalid" (click)="this.connect()" type="button" class="btn btn-primary btn-block mb-4">Connexion</button>
   
   
   </form>

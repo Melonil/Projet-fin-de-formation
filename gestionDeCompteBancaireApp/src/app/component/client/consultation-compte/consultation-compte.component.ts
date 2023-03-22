@@ -20,7 +20,7 @@ export class ConsultationCompteComponent implements OnInit {
   montantRetrait? :number;
   formRetrait!:FormGroup;
   formDepot!:FormGroup;
-  idClient = 15;
+  idClient! : number;
 
   constructor(
     private compteHttpService : CompteHttpService,
@@ -29,6 +29,8 @@ export class ConsultationCompteComponent implements OnInit {
   ) {}
  
     ngOnInit(): void {
+      const id = localStorage.getItem('idUser');
+      this.idClient = id !== null ? JSON.parse(id) : 0;
       this.loadCompte();
       this.formRetrait = this.formBuilder.group({
         montantRetrait : [0,[Validators.required,Validators.min(0)]]

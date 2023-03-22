@@ -42,7 +42,16 @@ public abstract class UserAccount {
 		this.password = password;
 		this.role = role;
 	}
-	
-	
 
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("UserAccount{");
+		sb.append("id=").append(id);
+		sb.append(", login='").append(login).append('\'');
+		sb.append(", password='").append(password).append('\'');
+		sb.append(", role=").append(role);
+		sb.append('}');
+		return sb.toString();
+	}
 }

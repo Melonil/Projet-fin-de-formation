@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.m2i.java.DTO.UserDetailsClientDTO;
 import com.m2i.java.model.Response;
@@ -24,6 +25,7 @@ import com.m2i.java.service.implementation.CompteService;
 @RestController
 @CrossOrigin
 @RequestMapping("/client")
+@CrossOrigin
 public class ClientController {
 
     private final ClientService clientService;
