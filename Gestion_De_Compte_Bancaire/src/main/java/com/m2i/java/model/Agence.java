@@ -26,9 +26,7 @@ public class Agence {
 	@Column(unique = true,nullable=false)
 	private String adresseAgence;
 	
-	@OneToMany(cascade = CascadeType.REFRESH)
-	@JoinColumn( name="idBanquier" )
-	private List<Banquier> listBanquiers;
+
 
 	@Override
 	public String toString() {
@@ -39,8 +37,6 @@ public class Agence {
 		builder.append(numAgence);
 		builder.append(", adresseAgence=");
 		builder.append(adresseAgence);
-		builder.append(", listBanquiers=");
-		builder.append(listBanquiers);
 		builder.append("]");
 		return builder.toString();
 	}

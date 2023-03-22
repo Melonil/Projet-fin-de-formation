@@ -15,6 +15,10 @@ const routes: Routes = [
     import('./component/client/client.module').then(
       (m) => m.ClientModule
     )
+  },
+  {
+    path:'logout',
+    component:ConnectionComponent
   }
 ];
 

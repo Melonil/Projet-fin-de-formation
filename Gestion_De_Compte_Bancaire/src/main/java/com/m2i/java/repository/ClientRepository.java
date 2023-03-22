@@ -1,10 +1,7 @@
 package com.m2i.java.repository;
 
+import com.m2i.java.model.Client;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.m2i.java.model.Client;
-import com.m2i.java.model.Compte;
-
-public interface ClientRepository  extends JpaRepository<Client,Long> {
-    Client findByNumCompte(String numCompte);
+public interface ClientRepository extends JpaRepository<Client, Long> {
 }

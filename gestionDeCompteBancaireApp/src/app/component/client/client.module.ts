@@ -7,12 +7,13 @@ import { EspaceClientComponent } from './espace-client.component';
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackbarService } from 'src/app/service/snackbar.service';
+import { ConnectionComponent } from 'src/app/shared/connection/connection.component';
 
 const routes: Routes = [
   
     {
       path:'',
-      component:ConsultationInfopersoComponent,
+      component:ConsultationCompteComponent,
     },
     {
       path:'comptebancaire',
@@ -23,6 +24,8 @@ const routes: Routes = [
       component:ConsultationInfopersoComponent
     }
 ];
+
+
 
 @NgModule({
   imports: [

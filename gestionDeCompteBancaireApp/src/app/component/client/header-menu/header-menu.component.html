@@ -1,5 +1,5 @@
 
-    <header style="color:#f8f9fa;" class="border-bottom"> 
+    <header style="color:#f8f9fa;z-index:100000" class="border-bottom"> 
     <div class="container" >
         <div class="align-items-center justify-content-center justify-content-lg-start" style="display:inline-flex;width: 100%;">
             
@@ -16,7 +16,7 @@
   
 
             <div class="text-end justify-content-center align-items-center">
-                <button style="font-size: 12px;" type="button" class="btn btn-light">Deconnexion</button>
+                <button [routerLink]="['/logout']" style="font-size: 12px;" type="button" class="btn btn-light">Deconnexion</button>
             </div>
         </div>
     </div>

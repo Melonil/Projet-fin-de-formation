@@ -1,14 +1,12 @@
 package com.m2i.java.model;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Entity
 @Data
+@Inheritance(strategy = InheritanceType.JOINED)
 public class UserDetails {
 	
 	@Id
@@ -27,5 +25,15 @@ public class UserDetails {
 	
 	@Column(nullable=false)
 	private String numTel;
+
+	public UserDetails(String nom, String prenom, String email, String numTel) {
+		this.nom = nom;
+		this.prenom = prenom;
+		this.email = email;
+		this.numTel = numTel;
+	}
+
+	public UserDetails() {
+	}
 
 }

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-connection',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class ConnectionComponent {
 
+  constructor(private router: Router) { }
+  connect(){
+    this.router.navigateByUrl('/espaceclient');
+  }
 }

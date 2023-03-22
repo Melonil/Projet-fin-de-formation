@@ -1,19 +1,14 @@
 package com.m2i.java.model;
 
+import com.m2i.java.ENUM.ROLE;
+import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
 import lombok.Getter;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-
 @Entity
-@Getter
 @Data
-public class Client extends UserDetailsClient {
+public class Client extends UserAccount {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -21,28 +16,37 @@ public class Client extends UserDetailsClient {
     private Long id;
 
     @Column(unique = true,nullable=false,updatable=false)
-    private String numCompte;
+    private String numClient;
+
+    @OneToOne(cascade = CascadeType.REFRESH)
+    @JoinColumn( name="idBanquier" )
+    private Banquier banquier;
+
+    @OneToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name="idUserDetailsClient")
+    private UserDetailsClient userDetailsClient;
 
     public Client() {
         super();
     }
 
     @Builder
-    public Client(Long id, String numCompte, String login , String password, ROLE role) {
+    public Client(Long id, String numClient, String login , String password, ROLE role,UserDetailsClient userDetailsClient, Banquier banquier) {
         super(login, password, role);
         this.id = id;
-        this.numCompte = numCompte;
+        this.numClient = numClient;
+        this.userDetailsClient = userDetailsClient;
+        this.banquier = banquier;
     }
 
     @Override
     public String toString() {
-        StringBuilder builder = new StringBuilder();
-        builder.append("Client [id=");
-        builder.append(id);
-        builder.append(", numCompte=");
-        builder.append(numCompte);
-        builder.append("]");
-        return builder.toString();
+        final StringBuilder sb = new StringBuilder("Client{");
+        sb.append("id=").append(id);
+        sb.append(", numClient='").append(numClient).append('\'');
+        sb.append(", banquier=").append(banquier);
+        sb.append(", userDetailsClient=").append(userDetailsClient);
+        sb.append('}');
+        return sb.toString();
     }
-
 }

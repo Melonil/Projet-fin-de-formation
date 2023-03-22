@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Inheritance(strategy = InheritanceType.JOINED)
-public class UserAccount {
+public abstract class UserAccount {
 	
 	@Id
 	@Column(nullable=false,updatable=false)
