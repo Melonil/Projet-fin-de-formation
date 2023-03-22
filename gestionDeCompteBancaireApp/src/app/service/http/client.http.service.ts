@@ -18,7 +18,7 @@ export class ClientHttpService{
         catchError(this.handleError)
     );
 
-    retrieveByIdBanquier$ = (banquierId: number) => <Observable<Client>>
+    retrieveByIdBanquier$ = (banquierId: number) => <Observable<Array<Client>>>
     this.http.get(`${this.baseUrl}/banquier/${banquierId}`).pipe(
         tap(console.log),
         catchError(this.handleError)
@@ -36,14 +36,14 @@ export class ClientHttpService{
         catchError(this.handleError)
     );
 
-    update$ = (clientId: number, client: Client) => <Observable<Client>>
-    this.http.put(`${this.baseUrl}/save/${clientId}`, client).pipe(
+    update$ = (client: Client) => <Observable<Client>>
+    this.http.put(`${this.baseUrl}/save`, client).pipe(
         tap(console.log),
         catchError(this.handleError)
     );
 
     delete$ = (clientId: number) => <Observable<Client>>
-    this.http.delete(`${this.baseUrl}/${clientId}`).pipe(
+    this.http.delete(`${this.baseUrl}/delete/${clientId}`).pipe(
         tap(console.log),
         catchError(this.handleError)
     );

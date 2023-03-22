@@ -14,20 +14,87 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="">
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td><button class="btn btn-info">Compte</button></td>
-                <td><button class="btn btn-info">Update</button></td>
-                <td><button class="btn btn-danger">Delete</button></td>
+            <tr *ngFor="let c of clients">
+                <td>{{ c.idClient }}</td>
+                <td>{{ c.nom }}</td>
+                <td>{{ c.prenom }}</td>
+                <td>{{ c.adressePostale }}</td>
+                <td>{{ c.mail }}</td>
+                <td>{{ c.numTel }}</td>
+                <td>{{ c.lieuNaissance }}</td>
+                <td>{{ c.profession }}</td>
+                <td>{{ c.revenu }}</td>
+                <td><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#compteModal">Compte</button>
+                </td>
+                <td><button class="btn btn-info" data-bs-toggle="modal" data-bs-target="#updateModal" (click)="this.loadFormUpdate(c.idClient)">Update</button>
+                </td>
+                <td><button class="btn btn-danger" (click)="this.deleteClient(c.idClient)">Delete</button></td>
             </tr>
         </tbody>
     </table>
+</div>
+
+
+<!-- Modal Update-->
+<div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form [formGroup]="formUpdateClient">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier le client : {{prenomClient}} {{nomClient}} </h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="form-outline">
+                        <label class="form-label" for="idClient">idClient :</label>
+                        <input formControlName="idClient" type="number" id="idClient"
+                            class="form-control" readonly="readonly"/>
+
+
+                        <label class="form-label" for="nom">Nom :</label>
+                        <input formControlName="nom" type="text" id="nom"
+                            class="form-control" readonly="readonly"/>
+
+                        <label class="form-label" for="montantRetrait">Prenom :</label>
+                        <input formControlName="prenom" type="text" id="prenom"
+                            class="form-control" readonly="readonly"/>
+
+                        <label class="form-label" for="adressePostale">Adresse :</label>
+                        <input formControlName="adressePostale" type="text" id="adressePostale"
+                            class="form-control" />
+
+                        <label class="form-label" for="mail">Mail :</label>
+                        <input formControlName="mail" type="text" id="mail"
+                            class="form-control" />
+
+                        <label class="form-label" for="numTel">Tel :</label>
+                        <input formControlName="numTel" type="text" id="numTel"
+                            class="form-control" />
+
+
+                        <label class="form-label" for="lieuNaissance">Lieu de naissance :</label>
+                        <input formControlName="lieuNaissance" type="text" id="lieuNaissance"
+                            class="form-control" readonly="readonly"/>
+
+                        <label class="form-label" for="profession">Profession :</label>
+                        <input formControlName="profession" type="text" id="profession"
+                            class="form-control" />
+
+
+                        <label class="form-label" for="revenu">Revenu :</label>
+                        <input formControlName="revenu" type="number" id="revenu"
+                            class="form-control" />
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModalUpdateClient" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" (click)="this.updateClient()">Modifier</button>
+                </div>
+            </div>
+        </form>
+    </div>
 </div>

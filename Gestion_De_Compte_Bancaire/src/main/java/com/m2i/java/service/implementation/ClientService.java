@@ -4,6 +4,8 @@ import java.util.Collection;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+import com.m2i.java.DTO.BanquierDTO;
+import com.m2i.java.DTO.BanquierDTOMapper;
 import com.m2i.java.DTO.UserDetailsClientDTO;
 import com.m2i.java.ENUM.ROLE;
 import com.m2i.java.model.Banquier;
@@ -25,6 +27,7 @@ public class ClientService implements CRUDService<UserDetailsClientDTO>{
     private final ClientRepository clientRepository;
     private final BanquierRepository banquierRepository;
     private UserDetailsClientDTOMapper userDetailsClientDTOMapper;
+    private BanquierDTOMapper banquierDTOMapper;
 
     public ClientService(UserDetailsClientRepository userDetailsClientRepository, ClientRepository clientRepository, BanquierRepository banquierRepository, UserDetailsClientDTOMapper userDetailsClientDTOMapper) {
         this.userDetailsClientRepository = userDetailsClientRepository;
@@ -95,5 +98,15 @@ public class ClientService implements CRUDService<UserDetailsClientDTO>{
         System.out.println("Deleting Client by ID : " + idClient);
         clientRepository.deleteById(idClient);
         return true;
+    }
+    
+
+    public Collection<UserDetailsClientDTO> listClientsByBanquier(Long id) {
+    	Banquier banquier = banquierRepository.findById(id).orElseThrow(() -> new RuntimeException("Banquier non trouvé"));
+    	System.out.println("toto");
+        return clientRepository.findByBanquier(banquier)
+                .stream()
+                .map(client -> userDetailsClientDTOMapper.map(client))
+                .collect(Collectors.toList());
     }
 }
