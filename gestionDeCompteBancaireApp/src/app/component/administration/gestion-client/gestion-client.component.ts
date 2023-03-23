@@ -21,7 +21,9 @@ export class GestionClientComponent implements OnInit{
 
   formCompteClient!: FormGroup
 
-  compte?: Compte;
+  compte!: Compte;
+
+  idCompte!: number;
 
   constructor(private clientHttpService: ClientHttpService, private compteHttpService: CompteHttpService, private formBuilder: FormBuilder) {}
 
@@ -45,21 +47,35 @@ export class GestionClientComponent implements OnInit{
     );
   }
 
-  public loadCompte(idCompte : number){
-    this.compteHttpService.retrieve$(idCompte).subscribe(
+  public loadFormCompteClient(idClient: number){
+    this.compteHttpService.getMainAccount$(idClient).subscribe(
       compte => {
         this.compte = compte;
-        this.loadCompte(1);
+        this.idCompte = compte.id;
+        console.log("COMPTE " + this.compte);
+        this.formCompteClient.controls['numCompte'].setValue(this.compte?.id);
+        this.formCompteClient.controls['dateCreation'].setValue(this.compte?.dateCreation);
+        this.formCompteClient.controls['solde'].setValue(this.compte?.solde);
+        this.formCompteClient.controls['decouvertAutorise'].setValue(this.compte?.decouvertAutorise);
       }
     );
   }
 
-  public loadFormCompteClient(){
-    this.formCompteClient.controls['numCompte'].setValue(this.compte?.id);
-    this.formCompteClient.controls['dateCreation'].setValue(this.compte?.dateCreation);
-    this.formCompteClient.controls['solde'].setValue(this.compte?.solde);
-    this.formCompteClient.controls['decouvertAutorise'].setValue(this.compte?.decouvertAutorise);
+  public updateCompte() {
+    this.compte = this.formCompteClient.value;
+    this.compte.id = this.idCompte;
+    this.compteHttpService.update$(this.compte?.id,this.compte).subscribe(data => {
+      console.log(data);
+      alert("Compte updated");
+      this.formCompteClient.reset();
+      this.loadData();
+    },
+      error => {
+        console.log(error);
+      }
+    );
   }
+
 
   public loadFormUpdate(idClient: number){
     const client = this.clients.find((p) => {

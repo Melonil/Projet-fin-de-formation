@@ -36,7 +36,7 @@ export class CompteHttpService {
   );
 
   update$ = (compteId:number, compte : Compte) => <Observable<Compte>>
-  this.http.put<Compte>(`${this.baseUrl}/save/${compteId}`,compte).pipe(
+  this.http.put<Compte>(`${this.baseUrl}/save`,compte).pipe(
     tap(console.log),
     catchError(this.handleError)
   );
