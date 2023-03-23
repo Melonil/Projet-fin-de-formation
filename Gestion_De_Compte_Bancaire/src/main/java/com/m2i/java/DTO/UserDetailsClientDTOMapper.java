@@ -8,9 +8,10 @@ import com.m2i.java.model.UserDetailsClient;
 @Component
 public class UserDetailsClientDTOMapper {
 
-    public UserDetailsClientDTO map(Client client) {
+    public UserDetailsClientDTO map(Client client,float solde) {
         return new UserDetailsClientDTO(
                 client.getId(),
+                client.getNumClient(),
                 client.getUserDetailsClient().getNom(),
                 client.getUserDetailsClient().getEmail(),
                 client.getUserDetailsClient().getNumTel(),
@@ -21,6 +22,7 @@ public class UserDetailsClientDTOMapper {
                 client.getUserDetailsClient().getLieuNaissance(),
                 client.getUserDetailsClient().getProfession(),
                 client.getUserDetailsClient().getRevenu(),
+                solde,
                 client.getBanquier().getId()
         );
     }

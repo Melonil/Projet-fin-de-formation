@@ -5,6 +5,8 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { EspaceAdministrationComponent } from './espace-administration.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormInfoClientComponent } from 'src/app/shared/form-info-client/form-info-client.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const route:Routes = [
   {
@@ -22,7 +24,8 @@ const route:Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(route),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class AdministrationModule { }

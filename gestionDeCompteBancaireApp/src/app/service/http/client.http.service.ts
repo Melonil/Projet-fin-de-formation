@@ -42,8 +42,8 @@ export class ClientHttpService{
         catchError(this.handleError)
     );
 
-    delete$ = (clientId: number) => <Observable<Client>>
-    this.http.delete(`${this.baseUrl}/delete/${clientId}`).pipe(
+    archive$ = (clientId: number) => <Observable<Client>>
+    this.http.delete(`${this.baseUrl}/archive/${clientId}`).pipe(
         tap(console.log),
         catchError(this.handleError)
     );

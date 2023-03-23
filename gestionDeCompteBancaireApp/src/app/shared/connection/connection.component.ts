@@ -26,10 +26,10 @@ export class ConnectionComponent implements OnInit{
     this.password = this.formConnection.get('password')?.value;
     this.service.authenticate$({"login":this.login,"password":this.password}).subscribe(
       (user) => {
+        localStorage.setItem('idUser', user.id.toString());
         if(user.role=="BANQUIER"){
           this.router.navigateByUrl('/espaceadministration');
         }else{
-          localStorage.setItem('idUser', user.id.toString());
           this.router.navigateByUrl('/espaceclient');
         }
       }

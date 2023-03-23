@@ -1,7 +1,11 @@
 package com.m2i.java.DTO;
 
+import java.util.Date;
+
 public record UserDetailsClientDTO(
         Long idClient,
+
+        String numClient,
         String nom,
 
         String mail,
@@ -14,6 +18,8 @@ public record UserDetailsClientDTO(
         String lieuNaissance,
         String profession,
         Double revenu,
+
+        float solde,
         Long idBanquier
 ) {
 

@@ -36,6 +36,8 @@ public abstract class UserAccount {
 	@Enumerated(EnumType.STRING)
 	private ROLE role;
 
+
+
 	public UserAccount(String login, String password, ROLE role) {
 		super();
 		this.login = login;

@@ -26,17 +26,20 @@ public class Client extends UserAccount {
     @JoinColumn(name="idUserDetailsClient")
     private UserDetailsClient userDetailsClient;
 
+    private Boolean isArchived;
+
     public Client() {
         super();
     }
 
     @Builder
-    public Client(Long id, String numClient, String login , String password, ROLE role,UserDetailsClient userDetailsClient, Banquier banquier) {
+    public Client(Long id, String numClient, String login , String password, ROLE role,UserDetailsClient userDetailsClient, Banquier banquier,Boolean isArchived) {
         super(login, password, role);
         this.id = id;
         this.numClient = numClient;
         this.userDetailsClient = userDetailsClient;
         this.banquier = banquier;
+        this.isArchived = false;
     }
 
     @Override

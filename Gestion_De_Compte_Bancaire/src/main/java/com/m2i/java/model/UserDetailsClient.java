@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 public class UserDetailsClient extends UserDetails {
 
@@ -25,11 +27,11 @@ public class UserDetailsClient extends UserDetails {
 	@Column(nullable=false)
 	private String lieuNaissance;
 
-	@Column(nullable=false)
+
 	private String profession;
 
 
-	@Column(nullable=false)
+
 	private Double revenu;
 
 	public UserDetailsClient(Long id,String adressePostale, String dateNaissance, String nationalite, String lieuNaissance,

@@ -67,10 +67,10 @@ public class ClientController {
 
     }
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping("/archive/{id}")
     public ResponseEntity<Boolean>	deleteClient(@PathVariable("id") Long id){
         return ResponseEntity.ok(
-                clientService.delete(id)
+                clientService.archive(id)
         );
 
     }

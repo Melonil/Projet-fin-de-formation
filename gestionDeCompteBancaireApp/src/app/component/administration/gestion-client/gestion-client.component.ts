@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Client } from 'src/app/model/client';
 import { ClientHttpService } from 'src/app/service/http/client.http.service';
+import { FormInfoClientComponent } from 'src/app/shared/form-info-client/form-info-client.component';
 
 @Component({
   selector: 'app-gestion-client',
@@ -9,35 +10,22 @@ import { ClientHttpService } from 'src/app/service/http/client.http.service';
   styleUrls: ['./gestion-client.component.css']
 })
 export class GestionClientComponent implements OnInit{
+  @ViewChild(FormInfoClientComponent, {static : true}) formClient! : FormInfoClientComponent;
+
 
   clients!: Array<any>;
 
-  client: Client = new Client();
+  idBanquier! : number;
 
-  idBanquier = 1;
-  idClient?: number;
-  nomClient?: string;
-  prenomClient?: string;
-  formUpdateClient!: FormGroup
-
-  constructor(private clientHttpService: ClientHttpService,  private formBuilder: FormBuilder) {}
+  constructor(private clientHttpService: ClientHttpService) {}
 
   ngOnInit(): void {
+    const id = localStorage.getItem('idUser');
+    this.idBanquier = id !== null ? JSON.parse(id) : 0;
     this.loadData();
-    this.formUpdateClient = this.formBuilder.group({
-      idClient: [0],
-      nom: [""],
-      prenom: [""],
-      adressePostale: [""],
-      mail: [""],
-      numTel: [""],
-      lieuNaissance: [""],
-      profession: [""],
-      revenu: [""]
-    });
   }
 
-  private loadData() {
+  public loadData() {
     this.clientHttpService.retrieveByIdBanquier$(this.idBanquier).subscribe(
       data => {
         this.clients = data;
@@ -46,43 +34,32 @@ export class GestionClientComponent implements OnInit{
   }
 
   public loadFormUpdate(idClient: number){
-    this.client = this.clients.find((p) => {
+    const client = this.clients.find((p) => {
       return p.idClient === idClient;
     });
-    console.log(this.client);
-    this.idClient = idClient;
-    this.nomClient = this.client.nom;
-    this.prenomClient = this.client.prenom;
-    this.formUpdateClient.controls['idClient'].setValue(this.client.idClient);
-    this.formUpdateClient.controls['nom'].setValue(this.client.nom);
-    this.formUpdateClient.controls['prenom'].setValue(this.client.prenom);
-    this.formUpdateClient.controls['adressePostale'].setValue(this.client.adressePostale);
-    this.formUpdateClient.controls['mail'].setValue(this.client.mail);
-    this.formUpdateClient.controls['numTel'].setValue(this.client.numTel);
-    this.formUpdateClient.controls['lieuNaissance'].setValue(this.client.lieuNaissance);
-    this.formUpdateClient.controls['profession'].setValue(this.client.profession);
-    this.formUpdateClient.controls['revenu'].setValue(this.client.revenu);
+    this.formClient.loadFormUpdate(client);
   }
 
-  public updateClient(){
-    this.clientHttpService.update$(this.formUpdateClient.value).subscribe(
-      client => {
-        this.client = client;
-        this.loadData();
-      }
-    );
-    let element: HTMLElement = document.getElementById("closeModalUpdateClient") as HTMLElement;
-    element.click();
+  public loadFormCreate(){
+    this.formClient.loadFormCreate(this.idBanquier);
   }
 
-  public deleteClient(id: number) {
-    let rs = confirm("Etes vous sur de vouloir supprimer le client d'id : " + id + " ?");
+  
+
+
+
+  public archiveClient(id: number) {
+    let rs = confirm("Etes vous sur de vouloir archiver le client d'id : " + id + " ?");
     if (rs) {
-      this.clientHttpService.delete$(id).subscribe(data => {
-        console.log(data);
-        this.loadData();
-      },
-        error => console.log(error));
+      this.clientHttpService.archive$(id).subscribe({
+        next : (data)=>{
+          console.log(data);
+          this.loadData();
+        },
+        error : (error)=>{
+          console.log(error);
+        }
+      });
     }
   }
 
