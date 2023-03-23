@@ -25,7 +25,7 @@ export class ClientHttpService{
     );
 
     retrieve$ = (clientId: number) => <Observable<Client>>
-    this.http.get(`${this.baseUrl}/${clientId}`).pipe(
+    this.http.get(`${this.baseUrl}/get/${clientId}`).pipe(
         tap(console.log),
         catchError(this.handleError)
     );

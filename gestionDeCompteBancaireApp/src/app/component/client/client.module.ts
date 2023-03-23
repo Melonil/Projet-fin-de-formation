@@ -8,6 +8,8 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackbarService } from 'src/app/service/snackbar.service';
 import { ConnectionComponent } from 'src/app/shared/connection/connection.component';
+import { FormInfoClientComponent } from 'src/app/shared/form-info-client/form-info-client.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 const routes: Routes = [
   
@@ -31,7 +33,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    SharedModule
   ],
   declarations: [EspaceClientComponent,ConsultationCompteComponent,ConsultationInfopersoComponent,HeaderMenuComponent],
   exports:[EspaceClientComponent],

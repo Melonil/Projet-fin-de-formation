@@ -1,9 +1,15 @@
 <form [formGroup]="formClient">
     <div class="modal-content">
         <div class="modal-header">
-            <h1 *ngIf="isFormUpdateMode" class="modal-title fs-5" id="exampleModalLabel">Modifier le client :
-                {{client.prenom}} {{client.nom}} </h1>
-            <h1 *ngIf="!isFormUpdateMode" class="modal-title fs-5" id="exampleModalLabel">Ajouter un client </h1>
+            <div *ngIf="isEspaceClient">
+                <h1 *ngIf="isFormUpdateMode" class="modal-title fs-5" id="exampleModalLabel">Modifier mes informations
+                </h1>
+            </div>
+            <div *ngIf="isEspaceAdmin">
+                <h1 *ngIf="isFormUpdateMode" class="modal-title fs-5" id="exampleModalLabel">Modifier le client :
+                    {{client.prenom}} {{client.nom}} </h1>
+                <h1 *ngIf="!isFormUpdateMode" class="modal-title fs-5" id="exampleModalLabel">Ajouter un client </h1>
+            </div>
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -56,7 +62,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" id="closeModalUpdateClient" class="btn btn-secondary"
-                data-bs-dismiss="modal">Fermer</button>
+                data-bs-dismiss="modal" *ngIf="isEspaceAdmin">Fermer</button>
             <button *ngIf="isFormUpdateMode" type="button" class="btn btn-primary"
                 (click)="this.updateClient()">Modifier</button>
             <button *ngIf="!isFormUpdateMode" type="button" class="btn btn-primary"

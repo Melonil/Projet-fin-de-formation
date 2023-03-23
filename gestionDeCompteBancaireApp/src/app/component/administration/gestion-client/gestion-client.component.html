@@ -18,7 +18,7 @@
                 <td>{{ c.numTel }}</td>
                 <td>{{ c.solde }}</td>
                 <td>
-                    <i class="bi bi-piggy-bank-fill boutonsTableClient" style="color:#ee667e" data-bs-toggle="modal" data-bs-target="#compteModal"></i>
+                    <i class="bi bi-piggy-bank-fill boutonsTableClient" style="color:#ee667e" data-bs-toggle="modal" data-bs-target="#formCompteClientModal"></i>
                     <i (click)="this.loadFormUpdate(c.idClient)" data-bs-toggle="modal" data-bs-target="#formClientModal" class="bi bi-pencil-square boutonsTableClient" style="color:#1b599c"></i>
                     <i (click)="this.archiveClient(c.idClient)" class="bi bi-trash-fill boutonsTableClient" style="color:red"></i>
                 </td>
@@ -31,6 +31,49 @@
 <!-- Modal Update-->
 <div class="modal fade" id="formClientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
-        <app-form-info-client (formSaved)="loadData()"></app-form-info-client>
+        <app-form-info-client (formSaved)="onFormSave()"></app-form-info-client>
+    </div>
+</div>
+
+<!-- Modal Compte-->
+<div class="modal fade" id="formCompteClientModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        
+        <form [formGroup]="formCompteClient">
+            <div class="modal-content">
+                <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modifier compte</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+        
+                    <div class="form-outline">
+                        <label class="form-label" for="numClient">Numero du compte :</label>
+                        <input formControlName="numCompte" type="text" id="numCompte" class="form-control"
+                        readonly="readonly"/>
+        
+                        <label class="form-label" for="dateCreation">Date de creation :</label>
+                        <input formControlName="dateCreation" type="text" id="dateCreation" class="form-control"
+                        readonly="readonly"/>
+
+                        <label class="form-label" for="solde">Solde :</label>
+                        <input formControlName="solde" type="text" id="solde" class="form-control" readonly="readonly"/>
+
+                        <label class="form-label" for="decouvertAutorise">Decouvert autorise :</label>
+                        <input formControlName="decouvertAutorise" type="text" id="decouvertAutorise"
+                        class="form-control"/>
+        
+                    </div>
+        
+                </div>
+                <div class="modal-footer">
+                    <button type="button" id="closeModalCompteClient" class="btn btn-secondary"
+                        data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary">Modifier</button>
+                </div>
+            </div>
+        </form>
+
+
     </div>
 </div>
