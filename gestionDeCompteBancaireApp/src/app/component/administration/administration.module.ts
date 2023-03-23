@@ -4,6 +4,7 @@ import { GestionClientComponent } from './gestion-client/gestion-client.componen
 import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { EspaceAdministrationComponent } from './espace-administration.component';
 import { RouterModule, Routes } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 const route:Routes = [
   {
@@ -21,6 +22,7 @@ const route:Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(route),
+    ReactiveFormsModule
   ]
 })
 export class AdministrationModule { }
