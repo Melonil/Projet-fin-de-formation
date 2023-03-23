@@ -52,7 +52,6 @@ export class GestionClientComponent implements OnInit{
       compte => {
         this.compte = compte;
         this.idCompte = compte.id;
-        console.log("COMPTE " + this.compte);
         this.formCompteClient.controls['numCompte'].setValue(this.compte?.id);
         this.formCompteClient.controls['dateCreation'].setValue(this.compte?.dateCreation);
         this.formCompteClient.controls['solde'].setValue(this.compte?.solde);
@@ -64,16 +63,18 @@ export class GestionClientComponent implements OnInit{
   public updateCompte() {
     this.compte = this.formCompteClient.value;
     this.compte.id = this.idCompte;
-    this.compteHttpService.update$(this.compte?.id,this.compte).subscribe(data => {
-      console.log(data);
-      alert("Compte updated");
-      this.formCompteClient.reset();
-      this.loadData();
-    },
-      error => {
-        console.log(error);
+    this.compteHttpService.update$(this.compte?.id,this.compte).subscribe({
+      next: data => {
+        console.log(data);
+        alert("Compte updated");
+        this.loadData();
+        let element: HTMLElement = document.getElementById("closeModalCompteClient") as HTMLElement;
+        element.click();
+      },
+      error: errors => {
+        console.log(errors);
       }
-    );
+    });
   }
 
 
