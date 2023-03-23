@@ -80,6 +80,9 @@
         <div class="text-danger" *ngIf="formRetrait.controls['montantRetrait'].errors?.['required']">
                 Renseigner une valeur
         </div>
+        <div class="text-danger" *ngIf="errorSoldeInsuffisant==true">
+                Le solde est insuffisant
+        </div>
         </div>
         </div>
         <div class="modal-footer">

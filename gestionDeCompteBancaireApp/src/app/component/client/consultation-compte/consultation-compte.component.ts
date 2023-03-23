@@ -21,6 +21,7 @@ export class ConsultationCompteComponent implements OnInit {
   formRetrait!:FormGroup;
   formDepot!:FormGroup;
   idClient! : number;
+  errorSoldeInsuffisant : boolean = false;
 
   constructor(
     private compteHttpService : CompteHttpService,
@@ -65,18 +66,26 @@ export class ConsultationCompteComponent implements OnInit {
 
     public retrait(){
       this.compteHttpService.withdraw$(this.compte!.id,this.formRetrait.value.montantRetrait).subscribe(
-        (compte) => {
+        compte => {
           this.compte = compte;
+          this.loadOperations(compte.id);
+
+          
+          this.errorSoldeInsuffisant = false;
+          let element: HTMLElement = document.getElementById("closeModalRetrait") as HTMLElement;
+          element.click();
+        },
+        error => {
+          this.errorSoldeInsuffisant = true;
         }
       );
-      let element: HTMLElement = document.getElementById("closeModalRetrait") as HTMLElement;
-      element.click();
     }
 
     public depot(){
       this.compteHttpService.deposit$(this.compte!.id,this.formDepot.value.montantDepot).subscribe(
         (compte) => {
           this.compte = compte;
+          this.loadOperations(compte.id);
         }
       );
       let element: HTMLElement = document.getElementById("closeModalDepot") as HTMLElement;
