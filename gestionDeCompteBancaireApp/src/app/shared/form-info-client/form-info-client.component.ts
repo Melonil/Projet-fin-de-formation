@@ -30,6 +30,7 @@ export class FormInfoClientComponent {
       mail: [""],
       numTel: [""],
       dateNaissance: [""],
+      nationalite: [""],
       lieuNaissance: [""],
       profession: [""],
       revenu: [""]
@@ -47,6 +48,7 @@ export class FormInfoClientComponent {
     this.formClient.controls['adressePostale'].setValue(this.client.adressePostale);
     this.formClient.controls['mail'].setValue(this.client.mail);
     this.formClient.controls['numTel'].setValue(this.client.numTel);
+    this.formClient.controls['nationalite'].setValue(this.client.nationalite);
     this.formClient.controls['lieuNaissance'].setValue(this.client.lieuNaissance);
     this.formClient.controls['profession'].setValue(this.client.profession);
     this.formClient.controls['revenu'].setValue(this.client.revenu);
