@@ -25,7 +25,6 @@ import com.m2i.java.service.implementation.CompteService;
 @RestController
 @CrossOrigin
 @RequestMapping("/client")
-@CrossOrigin
 public class ClientController {
 
     private final ClientService clientService;

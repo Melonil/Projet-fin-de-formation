@@ -6,7 +6,6 @@ import java.util.stream.Collectors;
 
 import com.m2i.java.ENUM.TypeOperation;
 import com.m2i.java.model.Operation;
-import com.m2i.java.repository.OperationRepository;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -28,7 +27,7 @@ public class CompteService implements CRUDService<CompteDTO> {
 	private ClientRepository clientRepository;
 	private final CompteDTOMapper compteDTOMapper;
 	
-	public CompteService(CompteRepository compteRepo, AgenceRepository agenceRepository, ClientRepository clientRepository, CompteDTOMapper compteDTOMapper, OperationRepository operationRepository) {
+	public CompteService(CompteRepository compteRepo, AgenceRepository agenceRepository, ClientRepository clientRepository, CompteDTOMapper compteDTOMapper) {
 		this.compteRepository = compteRepo;
 		this.compteDTOMapper = compteDTOMapper;
 		this.agenceRepository = agenceRepository;
@@ -96,6 +95,10 @@ public class CompteService implements CRUDService<CompteDTO> {
 		}
 	}
 
+	public CompteDTO retraitTDD(Long idCompte, float amount){
+
+		return null;
+	}
 
 	public CompteDTO depot(Long id, float amount,OperationService operationService) {
 		Compte compte = compteRepository.findById(id).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
