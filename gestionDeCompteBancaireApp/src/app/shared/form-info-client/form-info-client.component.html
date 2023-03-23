@@ -9,8 +9,8 @@
         <div class="modal-body">
 
             <div class="form-outline">
-                <label *ngIf="isFormUpdateMode" class="form-label" for="idClient">Numéro client :</label>
-                <input *ngIf="isFormUpdateMode" formControlName="idClient" type="number" id="idClient"
+                <label *ngIf="isFormUpdateMode" class="form-label" for="numClient">Numéro client :</label>
+                <input *ngIf="isFormUpdateMode" formControlName="numClient" type="text" id="numClient"
                     class="form-control" [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
 
 
@@ -18,7 +18,7 @@
                 <input formControlName="nom" type="text" id="nom" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
 
-                <label class="form-label" for="montantRetrait">Prenom :</label>
+                <label class="form-label" for="prenom">Prenom :</label>
                 <input formControlName="prenom" type="text" id="prenom" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
 

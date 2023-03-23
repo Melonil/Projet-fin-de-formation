@@ -23,7 +23,7 @@ export class FormInfoClientComponent {
 
   ngOnInit(): void {
     this.formClient = this.formBuilder.group({
-      idClient: [0],
+      numClient: [0],
       nom: [""],
       prenom: [""],
       adressePostale: [""],
@@ -42,7 +42,7 @@ export class FormInfoClientComponent {
     this.isFormUpdateMode = true;
     this.client = client;
     console.log(this.client);
-    this.formClient.controls['idClient'].setValue(this.client.idClient);
+    this.formClient.controls['numClient'].setValue(this.client.numClient);
     this.formClient.controls['nom'].setValue(this.client.nom);
     this.formClient.controls['prenom'].setValue(this.client.prenom);
     this.formClient.controls['adressePostale'].setValue(this.client.adressePostale);
