@@ -33,7 +33,7 @@ export class FormInfoClientComponent {
       prenom: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
       adressePostale: ["", [Validators.required, Validators.pattern("[A-Za-z0-9 ]{1,25}")]],
       mail: ["", [Validators.required, Validators.email]],
-      numTel: ["", [Validators.required, Validators.pattern("^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$")]],
+      numTel: ["", [Validators.required, Validators.pattern("^[+][33]{1}[0-9]{10}$")]],
       dateNaissance: ["", [Validators.required]],
       nationalite: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
       lieuNaissance: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
