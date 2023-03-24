@@ -57,6 +57,9 @@
                 <div class="text-danger" *ngIf="formClient.controls['mail'].errors?.['email']">
                     Renseignez une adresse email valide
                 </div>
+                <div class="text-danger" *ngIf="formClient.controls['mail'].errors?.['maxlength']">
+                    Maximum 50 caractères
+                </div>
 
                 <label class="form-label" for="numTel">Numero de telephone :</label>
                 <input formControlName="numTel" type="text" id="numTel" class="form-control" placeholder="+33"/>
@@ -99,6 +102,9 @@
                 <input formControlName="profession" type="text" id="profession" class="form-control" />
                 <div class="text-danger" *ngIf="formClient.controls['profession'].errors?.['required']">
                     Profession obligatoire
+                </div>
+                <div class="text-danger" *ngIf="formClient.controls['profession'].errors?.['maxlength']">
+                    Maximum 25 caractères
                 </div>
 
 
