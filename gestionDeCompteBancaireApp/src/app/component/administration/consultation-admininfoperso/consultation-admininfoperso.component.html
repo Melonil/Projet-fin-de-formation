@@ -33,7 +33,7 @@
             </div>
         </div>
         <div>
-            <button type="button" class="btn btn-primary" (click)="this.updateBanquier()">Modifier</button>
+            <button type="button" class="btn btn-primary" (click)="this.updateBanquier()" [disabled]="formBanquier.invalid">Modifier</button>
         </div>
     </form>
 </div>
