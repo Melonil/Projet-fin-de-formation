@@ -121,7 +121,7 @@
             <button type="button" id="closeModalUpdateClient" class="btn btn-secondary" data-bs-dismiss="modal"
                 *ngIf="isEspaceAdmin">Fermer</button>
             <button *ngIf="isFormUpdateMode" type="button" class="btn btn-primary"
-                (click)="this.updateClient()">Modifier</button>
+                (click)="this.updateClient()" [disabled]="formClient.invalid">Modifier</button>
             <button *ngIf="!isFormUpdateMode" type="button" class="btn btn-primary"
                 (click)="this.addClient()" [disabled]="formClient.invalid">Ajouter</button>
         </div>
