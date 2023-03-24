@@ -58,8 +58,8 @@
                     Renseignez une adresse email valide
                 </div>
 
-                <label class="form-label" for="numTel">Tel :</label>
-                <input formControlName="numTel" type="text" id="numTel" class="form-control" />
+                <label class="form-label" for="numTel">Numero de telephone :</label>
+                <input formControlName="numTel" type="text" id="numTel" class="form-control" placeholder="+33"/>
                 <div class="text-danger" *ngIf="formClient.controls['numTel'].errors?.['required']">
                     Numero de telephone obligatoire
                 </div>
