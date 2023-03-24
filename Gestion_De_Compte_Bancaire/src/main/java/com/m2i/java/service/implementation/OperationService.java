@@ -30,6 +30,7 @@ public class OperationService {
     }
 
     public List<OperationDTO> list(Long idCompte, int pageIndex,int pageSize){
+        System.out.println("idCompte = " + idCompte);
         System.out.println("pageIndex = " + pageIndex);
         System.out.println("pageSize = " + pageSize);
         Compte compte = compteRepository.findById(idCompte).orElseThrow(() -> new RuntimeException("Compte non trouvé"));

@@ -22,6 +22,8 @@ public class RetraitCompteUseCaseTest {
     private final Agence agence = new Agence();
     private final Client client = new Client();
 
+    private final String numeroCompte = "123456789";
+
 
     @BeforeEach
     public void setUp() {
@@ -32,17 +34,16 @@ public class RetraitCompteUseCaseTest {
 
     @Test
     public void should_not_be_able_to_withdraw(){
-        Compte compte = new Compte(1L, "5354654654", 200.0f, agence, client,1000f, LocalDateTime.now());
+        Compte compte = new Compte(1L, numeroCompte, 200.0f, agence, client,1000f, LocalDateTime.now());
 
         compteRepository.feedWith(compte);
 
-
-        Assertions.assertThatThrownBy(() -> compteService.retraitTDD(compte.getId(), 1000.0f))
+        Assertions.assertThatThrownBy(() -> compteService.retrait(compte.getId(), 10000.0f))
                 .isInstanceOf(RuntimeException.class)
                 .hasMessage("Solde insuffisant");
-
-
-        compteService.retrait(1L, 1000.0f,null);
-
     }
+
+
+
+
 }

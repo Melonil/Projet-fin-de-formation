@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import com.m2i.java.DTO.OperationDTO;
+import com.m2i.java.DTO.RetraitDepotInfosDTO;
 import com.m2i.java.ENUM.TypeOperation;
 import com.m2i.java.model.Operation;
 import org.springframework.data.domain.PageRequest;
@@ -83,21 +85,21 @@ public class CompteService implements CRUDService<CompteDTO> {
 		return true;
 	}
 
-	public CompteDTO retrait(Long id, float amount,OperationService operationService) {
+	public Compte retrait(Long id, float amount) {
 		Compte compte = compteRepository.findById(id).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
 		if(compte.getSolde() - amount >= compte.getDecouvertAutorise()) {
 			compte.setSolde(compte.getSolde() - amount);
 			compteRepository.save(compte);
-			operationService.saveOperation(new Operation(null,compte,amount, LocalDateTime.now(),TypeOperation.RETRAIT));
-			return compteDTOMapper.map(compte);
+			return compte;
 		}else{
 			throw new RuntimeException("Solde insuffisant");
 		}
 	}
 
-	public CompteDTO retraitTDD(Long idCompte, float amount){
-
-		return null;
+	public CompteDTO operationRetrait(RetraitDepotInfosDTO retraitDepotInfosDTO , OperationService operationService){
+		Compte compte = retrait(retraitDepotInfosDTO.idCompte(),retraitDepotInfosDTO.montant());
+		operationService.saveOperation(new Operation(null,compte,retraitDepotInfosDTO.montant(), LocalDateTime.now(),TypeOperation.RETRAIT));
+		return compteDTOMapper.map(compte);
 	}
 
 	public CompteDTO depot(Long id, float amount,OperationService operationService) {

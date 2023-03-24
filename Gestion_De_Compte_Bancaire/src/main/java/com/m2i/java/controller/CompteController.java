@@ -1,17 +1,14 @@
 package com.m2i.java.controller;
 
-import java.time.LocalDateTime;
 import java.util.Collection;
-import java.util.Map;
 
+import com.m2i.java.DTO.CompteDTOMapper;
 import com.m2i.java.DTO.RetraitDepotInfosDTO;
 import com.m2i.java.service.implementation.OperationService;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.m2i.java.DTO.CompteDTO;
-import com.m2i.java.model.Response;
 import com.m2i.java.service.implementation.CompteService;
 
 @RestController
@@ -20,6 +17,7 @@ import com.m2i.java.service.implementation.CompteService;
 public class CompteController {
 	private final CompteService compteService;
 	private final OperationService operationService;
+
 
 	public CompteController(CompteService compteService, OperationService operationService) {
 		this.compteService = compteService;
@@ -65,8 +63,9 @@ public class CompteController {
 
 	@PutMapping("/withdraw")
 	public ResponseEntity<CompteDTO> retrait(@RequestBody RetraitDepotInfosDTO retraitDepotInfosDTO){
+
 		return ResponseEntity.ok(
-			compteService.retrait(retraitDepotInfosDTO.idCompte(), retraitDepotInfosDTO.montant(),operationService)
+			compteService.operationRetrait(retraitDepotInfosDTO,operationService)
 		);
 	}
 
