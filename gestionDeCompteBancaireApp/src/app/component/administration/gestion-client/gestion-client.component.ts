@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Client } from 'src/app/model/client';
 import { Compte } from 'src/app/model/compte';
 import { ClientHttpService } from 'src/app/service/http/client.http.service';
@@ -37,7 +37,7 @@ export class GestionClientComponent implements OnInit{
       numCompte: [0],
       dateCreation: [""],
       solde: [0],
-      decouvertAutorise: [0]
+      decouvertAutorise: [0, [Validators.min(0)]]
     });
   }
 
