@@ -1,5 +1,5 @@
 import { Component,Input,Output,EventEmitter } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Client } from 'src/app/model/client';
 import { ClientHttpService } from 'src/app/service/http/client.http.service';
 
@@ -28,17 +28,17 @@ export class FormInfoClientComponent {
 
   ngOnInit(): void {
     this.formClient = this.formBuilder.group({
-      numClient: [0],
-      nom: [""],
-      prenom: [""],
-      adressePostale: [""],
-      mail: [""],
-      numTel: [""],
-      dateNaissance: [""],
-      nationalite: [""],
-      lieuNaissance: [""],
-      profession: [""],
-      revenu: [""]
+      numClient: [0, [Validators.required]],
+      nom: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
+      prenom: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
+      adressePostale: ["", [Validators.required, Validators.pattern("[A-Za-z0-9 ]{1,25}")]],
+      mail: ["", [Validators.required, Validators.email]],
+      numTel: ["", [Validators.required, Validators.pattern("^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$")]],
+      dateNaissance: ["", [Validators.required]],
+      nationalite: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
+      lieuNaissance: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
+      profession: ["", [Validators.required]],
+      revenu: ["", [Validators.required]]
     });
   }
 

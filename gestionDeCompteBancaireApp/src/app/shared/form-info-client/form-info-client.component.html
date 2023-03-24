@@ -23,50 +23,101 @@
                 <label class="form-label" for="nom">Nom :</label>
                 <input formControlName="nom" type="text" id="nom" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
+                <div class="text-danger" *ngIf="formClient.controls['nom'].errors?.['required']">
+                    Nom obligatoire
+                </div>
+                <div class="text-danger" *ngIf="formClient.controls['nom'].errors?.['pattern']">
+                    Lettres uniquement (max 25)
+                </div>
 
                 <label class="form-label" for="prenom">Prenom :</label>
                 <input formControlName="prenom" type="text" id="prenom" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
+                <div class="text-danger" *ngIf="formClient.controls['prenom'].errors?.['required']">
+                    Prénom obligatoire
+                </div>
+                <div class="text-danger" *ngIf="formClient.controls['prenom'].errors?.['pattern']">
+                    Lettres uniquement (max 25)
+                </div>
 
                 <label class="form-label" for="adressePostale">Adresse :</label>
                 <input formControlName="adressePostale" type="text" id="adressePostale" class="form-control" />
+                <div class="text-danger" *ngIf="formClient.controls['adressePostale'].errors?.['required']">
+                    Adresse obligatoire
+                </div>
+                <div class="text-danger" *ngIf="formClient.controls['adressePostale'].errors?.['pattern']">
+                    Maximum 25 caractères (caractères spéciaux interdits)
+                </div>
 
                 <label class="form-label" for="mail">Mail :</label>
                 <input formControlName="mail" type="text" id="mail" class="form-control" />
+                <div class="text-danger" *ngIf="formClient.controls['mail'].errors?.['required']">
+                    Mail obligatoire
+                </div>
+                <div class="text-danger" *ngIf="formClient.controls['mail'].errors?.['email']">
+                    Renseignez une adresse email valide
+                </div>
 
                 <label class="form-label" for="numTel">Tel :</label>
                 <input formControlName="numTel" type="text" id="numTel" class="form-control" />
+                <div class="text-danger" *ngIf="formClient.controls['numTel'].errors?.['required']">
+                    Numero de telephone obligatoire
+                </div>
+                <div class="text-danger" *ngIf="formClient.controls['numTel'].errors?.['pattern']">
+                    Renseignez un numero de telephone valide
+                </div>
 
                 <label class="form-label" for="lieuNaissance">Nationalite :</label>
                 <input formControlName="nationalite" type="text" id="nationalite" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
+                    <div class="text-danger" *ngIf="formClient.controls['nationalite'].errors?.['required']">
+                        Nationalite obligatoire
+                    </div>
+                    <div class="text-danger" *ngIf="formClient.controls['nationalite'].errors?.['pattern']">
+                        Lettres uniquement (max 25)
+                    </div>
 
 
                 <label class="form-label" for="lieuNaissance">Lieu de naissance :</label>
                 <input formControlName="lieuNaissance" type="text" id="lieuNaissance" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
+                    <div class="text-danger" *ngIf="formClient.controls['lieuNaissance'].errors?.['required']">
+                        Lieu de naissance obligatoire
+                    </div>
+                    <div class="text-danger" *ngIf="formClient.controls['lieuNaissance'].errors?.['pattern']">
+                        Lettres uniquement (max 25)
+                    </div>
 
                 <label class="form-label" for="dateNaissance">Date de naissance :</label>
                 <input formControlName="dateNaissance" type="date" id="dateNaissance" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
+                    <div class="text-danger" *ngIf="formClient.controls['dateNaissance'].errors?.['required']">
+                        Date de naisssance obligatoire
+                    </div>
 
                 <label class="form-label" for="profession">Profession :</label>
                 <input formControlName="profession" type="text" id="profession" class="form-control" />
+                <div class="text-danger" *ngIf="formClient.controls['profession'].errors?.['required']">
+                    Profession obligatoire
+                </div>
 
 
                 <label class="form-label" for="revenu">Revenu :</label>
                 <input formControlName="revenu" type="number" id="revenu" class="form-control" />
+                <div class="text-danger" *ngIf="formClient.controls['revenu'].errors?.['required']">
+                    Revenu obligatoire
+                </div>
 
             </div>
 
         </div>
         <div class="modal-footer">
-            <button type="button" id="closeModalUpdateClient" class="btn btn-secondary"
-                data-bs-dismiss="modal" *ngIf="isEspaceAdmin">Fermer</button>
+            <button type="button" id="closeModalUpdateClient" class="btn btn-secondary" data-bs-dismiss="modal"
+                *ngIf="isEspaceAdmin">Fermer</button>
             <button *ngIf="isFormUpdateMode" type="button" class="btn btn-primary"
                 (click)="this.updateClient()">Modifier</button>
             <button *ngIf="!isFormUpdateMode" type="button" class="btn btn-primary"
-                (click)="this.addClient()">Ajouter</button>
+                (click)="this.addClient()" [disabled]="formClient.invalid">Ajouter</button>
         </div>
     </div>
 </form>
