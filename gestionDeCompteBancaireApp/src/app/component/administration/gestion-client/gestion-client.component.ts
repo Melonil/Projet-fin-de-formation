@@ -5,6 +5,7 @@ import { Compte } from 'src/app/model/compte';
 import { ClientHttpService } from 'src/app/service/http/client.http.service';
 import { CompteHttpService } from 'src/app/service/http/compte.http.service';
 import { FormInfoClientComponent } from 'src/app/shared/form-info-client/form-info-client.component';
+import { TableOperationClientComponent } from 'src/app/shared/table-operation-client/table-operation-client.component';
 
 @Component({
   selector: 'app-gestion-client',
@@ -13,6 +14,7 @@ import { FormInfoClientComponent } from 'src/app/shared/form-info-client/form-in
 })
 export class GestionClientComponent implements OnInit{
   @ViewChild(FormInfoClientComponent, {static : true}) formClient! : FormInfoClientComponent;
+  @ViewChild(TableOperationClientComponent, {static : true}) tableOperationComponent! : TableOperationClientComponent;
 
 
   clients!: Array<any>;
@@ -28,7 +30,7 @@ export class GestionClientComponent implements OnInit{
   constructor(private clientHttpService: ClientHttpService, private compteHttpService: CompteHttpService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    const id = localStorage.getItem('idUser');
+    const id = sessionStorage.getItem('idUser');
     this.idBanquier = id !== null ? JSON.parse(id) : 0;
     this.loadData();
     this.formCompteClient = this.formBuilder.group({
@@ -56,6 +58,7 @@ export class GestionClientComponent implements OnInit{
         this.formCompteClient.controls['dateCreation'].setValue(this.compte?.dateCreation);
         this.formCompteClient.controls['solde'].setValue(this.compte?.solde);
         this.formCompteClient.controls['decouvertAutorise'].setValue(this.compte?.decouvertAutorise);
+        this.tableOperationComponent.loadOperations(compte.id);
       }
     );
   }

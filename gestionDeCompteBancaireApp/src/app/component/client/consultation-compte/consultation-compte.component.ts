@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit,ViewChild } from '@angular/core';
 import { catchError, Observable, of, startWith } from 'rxjs';
 import { AppState } from 'src/app/model/appState';
 import { DataState } from 'src/app/model/enum/dataState.enum';
@@ -7,6 +7,7 @@ import { CompteHttpService } from 'src/app/service/http/compte.http.service';
 import { FormGroup,FormBuilder,Validators } from '@angular/forms';
 import { Operation } from 'src/app/model/operation';
 import { OperationHttpService } from 'src/app/service/http/operation.http.service';
+import { TableOperationClientComponent } from 'src/app/shared/table-operation-client/table-operation-client.component';
 
 @Component({
   selector: 'consultation-compte',
@@ -22,10 +23,10 @@ export class ConsultationCompteComponent implements OnInit {
   formDepot!:FormGroup;
   idClient! : number;
   errorSoldeInsuffisant : boolean = false;
+  @ViewChild(TableOperationClientComponent, {static : true}) tableOperationComponent! : TableOperationClientComponent;
 
   constructor(
     private compteHttpService : CompteHttpService,
-    private operationHttpService : OperationHttpService,
     private formBuilder:FormBuilder
   ) {}
  
@@ -45,19 +46,13 @@ export class ConsultationCompteComponent implements OnInit {
       this.compteHttpService.getMainAccount$(this.idClient).subscribe(
         (compte) => {
           this.compte = compte;
-          this.loadOperations(compte.id);
+          this.tableOperationComponent.loadOperations(compte.id);
         }
       );
 
     }
 
-    public loadOperations(idCompte : number){
-      this.operationHttpService.operations$(idCompte).subscribe(
-        (data) => {
-          this.operations = data;
-        }
-      );
-    }
+
 
     public formatDate(date : Date) : string {
       date = new Date(date);
@@ -68,9 +63,8 @@ export class ConsultationCompteComponent implements OnInit {
       this.compteHttpService.withdraw$(this.compte!.id,this.formRetrait.value.montantRetrait).subscribe(
         compte => {
           this.compte = compte;
-          this.loadOperations(compte.id);
+          this.tableOperationComponent.loadOperations(compte.id);
 
-          
           this.errorSoldeInsuffisant = false;
           let element: HTMLElement = document.getElementById("closeModalRetrait") as HTMLElement;
           element.click();
@@ -85,7 +79,7 @@ export class ConsultationCompteComponent implements OnInit {
       this.compteHttpService.deposit$(this.compte!.id,this.formDepot.value.montantDepot).subscribe(
         (compte) => {
           this.compte = compte;
-          this.loadOperations(compte.id);
+          this.tableOperationComponent.loadOperations(compte.id);
         }
       );
       let element: HTMLElement = document.getElementById("closeModalDepot") as HTMLElement;

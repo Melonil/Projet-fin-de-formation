@@ -8,6 +8,7 @@ import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SnackbarService } from './service/snackbar.service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    MatSnackBarModule 
+    MatSnackBarModule ,
+    BrowserAnimationsModule
   ],
   providers: [SnackbarService],
   bootstrap: [AppComponent],

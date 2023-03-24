@@ -29,8 +29,10 @@ public class OperationService {
         operationRepository.save(operation);
     }
 
-    public List<OperationDTO> list(Long idCompte, int limit){
+    public List<OperationDTO> list(Long idCompte, int pageIndex,int pageSize){
+        System.out.println("pageIndex = " + pageIndex);
+        System.out.println("pageSize = " + pageSize);
         Compte compte = compteRepository.findById(idCompte).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
-        return operationRepository.findAllByCompteOrderByDateOperationDesc(compte).stream().map(operation -> operationDTOMapper.map(operation)).toList();
+        return operationRepository.findAllByCompteOrderByDateOperationDesc(compte,PageRequest.of(pageIndex,pageSize)).stream().map(operation -> operationDTOMapper.map(operation)).toList();
     }
 }

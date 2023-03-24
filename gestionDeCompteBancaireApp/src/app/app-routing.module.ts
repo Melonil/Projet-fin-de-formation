@@ -5,6 +5,7 @@ import { EspaceAdministrationComponent } from './component/administration/espace
 import { ConsultationCompteComponent } from './component/client/consultation-compte/consultation-compte.component';
 import { ConsultationInfopersoComponent } from './component/client/consultation-infoperso/consultation-infoperso/consultation-infoperso.component';
 import { EspaceClientComponent } from './component/client/espace-client.component';
+import { AuthGuard } from './service/AuthGuard.service';
 import { ConnectionComponent } from './shared/connection/connection.component';
 
 const routes: Routes = [
@@ -12,6 +13,7 @@ const routes: Routes = [
   {
     path:'espaceclient',
     component:EspaceClientComponent,
+    canActivate: [AuthGuard],
     loadChildren: () =>
     import('./component/client/client.module').then(
       (m) => m.ClientModule
@@ -24,6 +26,7 @@ const routes: Routes = [
   {
     path:'espaceadministration',
     component:EspaceAdministrationComponent,
+    canActivate: [AuthGuard],
     loadChildren: () =>
     import('./component/administration/administration.module').then(
       (m) => m.AdministrationModule

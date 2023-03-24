@@ -1,8 +1,7 @@
-<div class="container">
+<div class="container" style="max-width: 70%;">
         <br/>
         <h2 style="font-size:13px;color: #003883;font-weight: 600;margin: 0 0.6rem 0 0;">M2i Banque : {{compte?.numCompte}}</h2>
-        <br/>
-        <br/>
+        <br/><br/>
         <div class="card mycard-header" style="max-width: 500px;margin: auto;">
                 <div class="card-body">
                         <div class="row">
@@ -31,33 +30,9 @@
         </div>
         <br/>
         <br/>
-        <h2 style="font-size:16px;color: #003883;font-weight: 600;margin: 0 0.6rem 0 0;">Historique des opérations :</h2>
-        <br/>
-        <table class="table">
-                <thead>
-                  <tr>
-                    <th scope="col">Type</th>
-                    <th scope="col">Date</th>
-                    <th scope="col">Montant</th>
-                  </tr>
-                </thead>
-                <tbody>
-                        <tr *ngFor="let operation of operations">
-                                <td>{{operation.typeOperation }}</td>
-                                <td>{{this.formatDate(operation.dateOperation)}}</td>
-                                <td>{{operation.montant}} €</td>
-                        </tr>
-                </tbody>
-              </table>
-
-        
-        
-
+        <app-table-operation-client></app-table-operation-client>
 </div>
-<br>
-<br>
-<br>
-<br>
+<br><br><br><br>
 
       
 <!-- Modal -->
@@ -86,7 +61,7 @@
         </div>
         </div>
         <div class="modal-footer">
-        <button type="button"  id="closeModalRetrait" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  id="closeModalRetrait" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
         <button type="button" class="btn btn-primary" (click)="this.retrait()" [disabled]="formRetrait.invalid">Retirer</button>
         </div>
         </div>
@@ -100,7 +75,7 @@
         <form [formGroup]="formDepot">
         <div class="modal-content">
         <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Depot</h1>
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Dépôt</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -117,7 +92,7 @@
         </div>
         </div>
         <div class="modal-footer">
-        <button type="button"  id="closeModalDepot" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button"  id="closeModalDepot" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
         <button type="button" class="btn btn-primary" (click)="this.depot()" [disabled]="formDepot.invalid">Déposer</button>
         </div>
         </div>
