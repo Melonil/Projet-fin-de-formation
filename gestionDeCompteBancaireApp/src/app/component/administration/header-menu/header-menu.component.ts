@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -10,4 +11,11 @@ import { AppComponent } from 'src/app/app.component';
 
 
 export class HeaderMenuComponent {
+
+  constructor(private router: Router) { }
+
+  public deconnect(){
+    sessionStorage.setItem('idUser', "");
+    this.router.navigateByUrl('/logout');
+  }
 }

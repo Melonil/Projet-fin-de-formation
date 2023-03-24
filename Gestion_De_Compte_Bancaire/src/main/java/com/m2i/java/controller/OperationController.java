@@ -1,6 +1,7 @@
 package com.m2i.java.controller;
 
 import com.m2i.java.DTO.OperationDTO;
+import com.m2i.java.DTO.PaginationInfoDTO;
 import com.m2i.java.model.Operation;
 import com.m2i.java.model.Response;
 import com.m2i.java.service.implementation.OperationService;
@@ -24,10 +25,10 @@ public class OperationController {
     }
     
     @GetMapping("/list/{id}")
-    public ResponseEntity<Collection<OperationDTO>> getOperations(@PathVariable("id") Long idCompte){
-        System.out.println(operationService.list(idCompte,30));
+    public ResponseEntity<Collection<OperationDTO>> getOperations(@PathVariable("id") Long idCompte, @RequestParam("pageIndex") int pageIndex, @RequestParam("pageSize") int pageSize){
+
         return ResponseEntity.ok(
-            operationService.list(idCompte,30)
+            operationService.list(idCompte,pageIndex,pageSize)
         );
     }
 }

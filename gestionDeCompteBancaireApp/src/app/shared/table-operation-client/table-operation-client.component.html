@@ -1,0 +1,41 @@
+<h2 style="font-size:16px;color: #003883;font-weight: 600;margin: 0 0.6rem 0 0;">Historique des opérations :</h2>
+<br/>
+<!-- <table class="table">
+    <thead>
+        <tr>
+        <th scope="col">Type</th>
+        <th scope="col">Date</th>
+        <th scope="col">Montant</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let operation of operations">
+            <td>{{operation.typeOperation }}</td>
+            <td>{{this.formatDate(operation.dateOperation)}}</td>
+            <td>{{operation.montant}} €</td>
+        </tr>
+    </tbody>
+</table>
+-->
+<table mat-table [dataSource]="dataSource">
+    <ng-container matColumnDef="typeOperation">
+        <th mat-header-cell *matHeaderCellDef> Type </th>
+        <td mat-cell *matCellDef="let element"> {{element.typeOperation}} </td>
+    </ng-container>
+    <ng-container matColumnDef="dateOperation">
+        <th mat-header-cell *matHeaderCellDef> Date </th>
+        <td mat-cell *matCellDef="let element"> {{this.formatDate(element.dateOperation)}} </td>
+    </ng-container>
+    <ng-container matColumnDef="montant">
+        <th mat-header-cell *matHeaderCellDef> Montant </th>
+        <td mat-cell *matCellDef="let element"> {{element.montant}} € </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+<mat-paginator [length]="operations.length"
+              [pageSize]="3"
+              [pageSizeOptions]="[3, 5, 10]"
+              aria-label="Select page">
+</mat-paginator>
