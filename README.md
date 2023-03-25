@@ -61,8 +61,8 @@ Lien vers le diagram de classe : https://online.visual-paradigm.com/share.jsp?id
 ### Lancer le Backend Spring Boot
 
 - ouvrir le projet avec eclipse
-- Run as maven install
-- Run as spring boot app
+- Run as maven install OU ```bash mvn install ```
+- Run as spring boot app OU ```bash mvn spring-boot:run ```
 
 ### Lancer le Frontend Angular
 
