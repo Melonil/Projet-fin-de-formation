@@ -47,9 +47,6 @@ La présentation doit contenir les éléments suivants :
 - Tests.
 - Livrable WAR.
 
-
-Lien vers le diagram de classe : https://online.visual-paradigm.com/share.jsp?id=323335363332312d39
-
 ## Comment lancer le projet ?
 
 ### Initialiser la BDD
