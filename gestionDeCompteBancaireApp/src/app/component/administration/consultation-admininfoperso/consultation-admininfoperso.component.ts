@@ -23,7 +23,7 @@ export class ConsultationAdmininfopersoComponent implements OnInit {
   constructor(private banquierHttpService: BanquierHttpService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {
-    const id = localStorage.getItem('idUser');
+    const id = sessionStorage.getItem('idUser');
     this.idBanquier = id !== null ? JSON.parse(id) : 0;
     this.formBanquier = this.formBuilder.group({
       numEmploye: [""],

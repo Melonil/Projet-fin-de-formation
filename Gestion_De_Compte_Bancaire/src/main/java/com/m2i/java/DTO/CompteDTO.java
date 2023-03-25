@@ -4,6 +4,7 @@ import com.m2i.java.model.Agence;
 import com.m2i.java.model.Client;
 import com.m2i.java.model.Operation;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -13,7 +14,8 @@ public record CompteDTO(
 		float decouvertAutorise,
 		Long idAgence,
 		Long idClient,
-		float solde
+		float solde,
+		String dateCreation
 ) {
 
 }
