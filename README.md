@@ -50,6 +50,26 @@ La présentation doit contenir les éléments suivants :
 
 Lien vers le diagram de classe : https://online.visual-paradigm.com/share.jsp?id=323335363332312d39
 
-##Comment lancer le projet ?
+## Comment lancer le projet ?
 
-1) 
+### Initialiser la BDD
+
+- Créer une base de données MySQL de nom gestiondecomptedb avec l'utilisateur root (ou alors adaptez le fichier application.properties du projet Spring Boot)
+
+- importer le script de création de tables / remplissage des tables avec des données
+
+### Lancer le Backend Spring Boot
+
+- ouvrir le projet avec eclipse
+- Run as maven install
+- Run as spring boot app
+
+### Lancer le Frontend Angular
+
+- ouvrir gestionDeCompteBancaire App
+- (installer angular/cli si nécessaire) ```bash npm i -g @angular/cli```
+- ```bash npm install ```
+- ```bash ng serve ```
+- l'application devrait être utilisable : http://localhost:4200
+
+
