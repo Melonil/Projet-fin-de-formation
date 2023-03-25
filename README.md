@@ -54,22 +54,22 @@ Lien vers le diagram de classe : https://online.visual-paradigm.com/share.jsp?id
 
 ### Initialiser la BDD
 
-- Créer une base de données MySQL de nom gestiondecomptedb avec l'utilisateur root (ou alors adaptez le fichier application.properties du projet Spring Boot)
+- Créer une base de données MySQL de nom gestiondecomptedb avec l'utilisateur root (ou alors adapter le fichier application.properties du projet Spring Boot)
 
 - importer le script de création de tables / remplissage des tables avec des données
 
 ### Lancer le Backend Spring Boot
 
 - ouvrir le projet avec eclipse
-- Run as maven install OU ```bash mvn install ```
-- Run as spring boot app OU ```bash mvn spring-boot:run ```
+- Run as maven install OU ```mvn install ```
+- Run as spring boot app OU ```mvn spring-boot:run ```
 
 ### Lancer le Frontend Angular
 
 - ouvrir gestionDeCompteBancaire App
-- (installer angular/cli si nécessaire) ```bash npm i -g @angular/cli```
-- ```bash npm install ```
-- ```bash ng serve ```
+- (installer angular/cli si nécessaire) ```npm i -g @angular/cli```
+- ```npm install ```
+- ```ng serve ```
 - l'application devrait être utilisable : http://localhost:4200
 
 
