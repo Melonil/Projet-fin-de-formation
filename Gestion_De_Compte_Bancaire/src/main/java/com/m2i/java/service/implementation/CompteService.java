@@ -87,7 +87,7 @@ public class CompteService implements CRUDService<CompteDTO> {
 
 	public Compte retrait(Long id, float amount) {
 		Compte compte = compteRepository.findById(id).orElseThrow(() -> new RuntimeException("Compte non trouvé"));
-		if(compte.getSolde() - amount >= compte.getDecouvertAutorise()) {
+		if(compte.getSolde() - amount >= -compte.getDecouvertAutorise()) {
 			compte.setSolde(compte.getSolde() - amount);
 			compteRepository.save(compte);
 			return compte;

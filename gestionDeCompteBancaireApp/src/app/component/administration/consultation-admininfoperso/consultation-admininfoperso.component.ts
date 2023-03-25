@@ -18,8 +18,6 @@ export class ConsultationAdmininfopersoComponent implements OnInit {
 
   formBanquier!: FormGroup;
 
-
-
   constructor(private banquierHttpService: BanquierHttpService, private formBuilder: FormBuilder) {}
 
   ngOnInit(): void {

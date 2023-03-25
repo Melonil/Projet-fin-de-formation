@@ -31,7 +31,7 @@ export class ConsultationCompteComponent implements OnInit {
   ) {}
  
     ngOnInit(): void {
-      const id = localStorage.getItem('idUser');
+      const id = sessionStorage.getItem('idUser');
       this.idClient = id !== null ? JSON.parse(id) : 0;
       this.loadCompte();
       this.formRetrait = this.formBuilder.group({

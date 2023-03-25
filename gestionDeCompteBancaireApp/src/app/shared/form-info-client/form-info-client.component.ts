@@ -29,14 +29,14 @@ export class FormInfoClientComponent {
   ngOnInit(): void {
     this.formClient = this.formBuilder.group({
       numClient: [0],
-      nom: ["", [Validators.required, Validators.pattern("[A-Za-z ]{1,25}")]],
-      prenom: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
+      nom: ["", [Validators.required, Validators.maxLength(25)]],
+      prenom: ["", [Validators.required, Validators.maxLength(25)]],
       adressePostale: ["", [Validators.required, Validators.maxLength(50)]],
       mail: ["", [Validators.required, Validators.email, Validators.maxLength(50)]],
       numTel: ["", [Validators.required, Validators.pattern("^[+][33]{1}[0-9]{10}$")]],
       dateNaissance: ["", [Validators.required]],
       nationalite: ["", [Validators.required, Validators.maxLength(25)]],
-      lieuNaissance: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
+      lieuNaissance: ["", [Validators.required]],
       profession: ["", [Validators.required, Validators.maxLength(25)]],
       revenu: ["", [Validators.required]]
     });
@@ -82,6 +82,7 @@ export class FormInfoClientComponent {
       client => {
         this.client = client;
         this.formSaved.emit(this.client);
+        alert("Les informations ont été modifié avec succès !");
       }
     );
   }

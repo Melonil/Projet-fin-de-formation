@@ -16,7 +16,7 @@
                 <td>{{ c.nom }}</td>
                 <td>{{ c.prenom }}</td>
                 <td>{{ c.numTel }}</td>
-                <td>{{ c.solde }}</td>
+                <td [ngStyle]="{'background-color':  + c.solde <0 ? '#c75454' : 'initial' + ''}">{{ c.solde }} €</td>
                 <td>
                     <i (click)="this.loadFormCompteClient(c.idClient)" class="bi bi-piggy-bank-fill boutonsTableClient" style="color:#ee667e" data-bs-toggle="modal" data-bs-target="#formCompteClientModal"></i>
                     <i (click)="this.loadFormUpdate(c.idClient)" data-bs-toggle="modal" data-bs-target="#formClientModal" class="bi bi-pencil-square boutonsTableClient" style="color:#1b599c"></i>

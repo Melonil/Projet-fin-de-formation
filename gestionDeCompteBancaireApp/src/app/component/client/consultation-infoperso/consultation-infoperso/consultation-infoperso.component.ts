@@ -18,7 +18,7 @@ export class ConsultationInfopersoComponent implements OnInit{
   constructor(private clientHttpService: ClientHttpService) {}
 
   ngOnInit(): void {
-    const id = localStorage.getItem('idUser');
+    const id = sessionStorage.getItem('idUser');
     this.idClient = id !== null ? JSON.parse(id) : 0;
     this.loadData();
   }
