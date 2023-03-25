@@ -2,7 +2,9 @@
 
 ## Cahier de charge
 Projet : Gestion de compte bancaire
+
 Objectif : développer une plateforme web pour la gestion de comptes bancaires.
+
 Utilisateurs : Agence, Client
 Client : Consultation, retrait, dépôt, simulation crédit
 Agence : gestion de comptes : création, modification, clôture
