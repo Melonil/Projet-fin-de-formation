@@ -29,7 +29,7 @@ export class FormInfoClientComponent {
   ngOnInit(): void {
     this.formClient = this.formBuilder.group({
       numClient: [0],
-      nom: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
+      nom: ["", [Validators.required, Validators.pattern("[A-Za-z ]{1,25}")]],
       prenom: ["", [Validators.required, Validators.pattern("[A-Za-z]{1,25}")]],
       adressePostale: ["", [Validators.required, Validators.maxLength(50)]],
       mail: ["", [Validators.required, Validators.email, Validators.maxLength(50)]],

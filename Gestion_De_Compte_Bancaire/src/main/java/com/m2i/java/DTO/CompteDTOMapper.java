@@ -1,5 +1,6 @@
 package com.m2i.java.DTO;
 
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import com.m2i.java.model.Operation;
@@ -14,7 +15,8 @@ import com.m2i.java.model.Compte;
 public class CompteDTOMapper {
 
 	public CompteDTO map(Compte compte) {
-		return new CompteDTO(compte.getId(),compte.getNumCompte(),compte.getDecouvertAutorise(),compte.getAgence().getId(),compte.getClient().getId(), compte.getSolde() );
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+		return new CompteDTO(compte.getId(),compte.getNumCompte(),compte.getDecouvertAutorise(),compte.getAgence().getId(),compte.getClient().getId(), compte.getSolde(),compte.getDateCreation().format(formatter) );
 	}
 	
 	public Compte map(CompteDTO compteDTO,Agence agence,Client client) {
