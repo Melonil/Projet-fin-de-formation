@@ -45,8 +45,8 @@
                 <div class="text-danger" *ngIf="formClient.controls['adressePostale'].errors?.['required']">
                     Adresse obligatoire
                 </div>
-                <div class="text-danger" *ngIf="formClient.controls['adressePostale'].errors?.['pattern']">
-                    Maximum 25 caractères (caractères spéciaux interdits)
+                <div class="text-danger" *ngIf="formClient.controls['adressePostale'].errors?.['maxlength']">
+                    Maximum 50 caractères (caractères spéciaux interdits)
                 </div>
 
                 <label class="form-label" for="mail">Mail :</label>
@@ -70,14 +70,14 @@
                     Renseignez un numero de telephone valide (+33)
                 </div>
 
-                <label class="form-label" for="lieuNaissance">Nationalite :</label>
+                <label class="form-label" for="nationalite">Nationalite :</label>
                 <input formControlName="nationalite" type="text" id="nationalite" class="form-control"
                     [attr.readonly]="isFormUpdateMode ? 'readonly':null" />
                     <div class="text-danger" *ngIf="formClient.controls['nationalite'].errors?.['required']">
                         Nationalite obligatoire
                     </div>
-                    <div class="text-danger" *ngIf="formClient.controls['nationalite'].errors?.['pattern']">
-                        Lettres uniquement (max 25)
+                    <div class="text-danger" *ngIf="formClient.controls['nationalite'].errors?.['maxlength']">
+                        Maximum 25 caractères
                     </div>
 
 
