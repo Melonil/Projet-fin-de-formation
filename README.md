@@ -57,13 +57,13 @@ La présentation doit contenir les éléments suivants :
 
 ### Lancer le Backend Spring Boot
 
-- ouvrir le projet avec eclipse
+- ouvrir le projet Gestion_De_Compte_Bancaire avec eclipse
 - Run as maven install OU ```mvn install ```
 - Run as spring boot app OU ```mvn spring-boot:run ```
 
 ### Lancer le Frontend Angular
 
-- ouvrir gestionDeCompteBancaire App
+- ouvrir le projet gestionDeCompteBancaireApp
 - (installer angular/cli si nécessaire) ```npm i -g @angular/cli```
 - ```npm install ```
 - ```ng serve ```
