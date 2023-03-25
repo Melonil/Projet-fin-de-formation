@@ -1,6 +1,6 @@
 # Projet-fin-de-formation
 
-##Cahier de charge
+## Cahier de charge
 Projet : Gestion de compte bancaire
 Objectif : développer une plateforme web pour la gestion de comptes bancaires.
 Utilisateurs : Agence, Client
