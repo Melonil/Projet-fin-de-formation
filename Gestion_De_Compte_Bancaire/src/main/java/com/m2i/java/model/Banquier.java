@@ -32,7 +32,7 @@ public class Banquier extends UserAccount{
 	@JoinColumn(name="idAgence")
 	private Agence agence;
 	
-	@OneToOne(cascade = CascadeType.REFRESH)
+	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="idUserDetails")
 	private UserDetails userDetails;
 	

@@ -45,30 +45,27 @@ public class BanquierService implements CRUDService<BanquierDTO>{
 
 	@Override
 	public BanquierDTO create(BanquierDTO banquierDTO) {
-		Agence agence = agenceRepository.findById(banquierDTO.idAgence()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));
-		UserDetails userDetails = userDetailsRepository.findById(banquierDTO.idUserDetails()).orElseThrow(() -> new RuntimeException("UserDetails non trouvé"));
-		
-		Banquier banquierToCreate = banquierDTOMapper.map(banquierDTO, agence, userDetails);
-		
-		System.out.println("Saving new Banquier : " + banquierDTO.numEmploye());
-		System.out.println(banquierDTO.toString());
-		Banquier savedBanquier = banquierRepository.save(banquierToCreate);
-		
-		return banquierDTOMapper.map(savedBanquier);
+//		Agence agence = agenceRepository.findById(banquierDTO.idAgence()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));
+//		UserDetails userDetails = userDetailsRepository.findById(banquierDTO.idUserDetails()).orElseThrow(() -> new RuntimeException("UserDetails non trouvé"));
+//		
+//		Banquier banquierToCreate = banquierDTOMapper.map(banquierDTO, agence, userDetails);
+//		
+//		System.out.println("Saving new Banquier : " + banquierDTO.numEmploye());
+//		System.out.println(banquierDTO.toString());
+//		Banquier savedBanquier = banquierRepository.save(banquierToCreate);
+//		
+//		return banquierDTOMapper.map(savedBanquier);
+		return null;
 	}
 
 	@Override
 	public BanquierDTO update(BanquierDTO banquierDTO) {
-		Banquier banquier = banquierRepository.findById(banquierDTO.id()).orElseThrow(() -> new RuntimeException("Banquier non trouvé"));	
+		Banquier banquier = banquierRepository.findById(banquierDTO.id()).orElseThrow(() -> new RuntimeException("Banquier non trouvé"));
 		Agence agence = agenceRepository.findById(banquierDTO.idAgence()).orElseThrow(() -> new RuntimeException("Agence non trouvé"));
-		UserDetails userDetails = userDetailsRepository.findById(banquierDTO.idUserDetails()).orElseThrow(() -> new RuntimeException("UserDetails non trouvé"));
-
+		UserDetails userDetails = banquier.getUserDetails();
 		
-		banquier.setLogin(banquierDTO.login());
-		banquier.setPassword(banquierDTO.password());
-		banquier.setRole(banquierDTO.role());
-		banquier.setAgence(agence);
-		banquier.setUserDetails(userDetails);
+		userDetails.setNumTel(banquierDTO.numTel());
+		userDetails.setEmail(banquierDTO.email());
 		
 		System.out.println("Updating Banquier : " + banquierDTO.numEmploye());
 		Banquier updatedBanquier = banquierRepository.save(banquier);

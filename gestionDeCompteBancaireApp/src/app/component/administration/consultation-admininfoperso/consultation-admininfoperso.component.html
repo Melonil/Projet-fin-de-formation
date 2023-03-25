@@ -1,0 +1,39 @@
+<div class="container">
+    <h3>Modifier mes informations</h3>
+    <form [formGroup]="formBanquier">
+        <div class="form-outline">
+            <label class="form-label" for="numEmploye">Numéro d'employé :</label>
+            <input formControlName="numEmploye" type="text" id="numEmploye" class="form-control" readonly="readonly" />
+
+            <label class="form-label" for="nom">Nom :</label>
+            <input formControlName="nom" type="text" id="nom" class="form-control" readonly="readonly" />
+
+            <label class="form-label" for="prenom">Prénom :</label>
+            <input formControlName="prenom" type="text" id="nom" class="form-control" readonly="readonly" />
+
+            <label class="form-label" for="email">Adresse email :</label>
+            <input formControlName="email" type="text" id="email" class="form-control" />
+            <div class="text-danger" *ngIf="formBanquier.controls['email'].errors?.['required']">
+                Email obligatoire
+            </div>
+            <div class="text-danger" *ngIf="formBanquier.controls['email'].errors?.['email']">
+                Renseignez une adresse email valide
+            </div>
+            <div class="text-danger" *ngIf="formBanquier.controls['email'].errors?.['maxlength']">
+                Maximum 50 caractères
+            </div>
+
+            <label class="form-label" for="numTel">Numéro de téléphone :</label>
+            <input formControlName="numTel" type="text" id="numTel" class="form-control" placeholder="+33"/>
+            <div class="text-danger" *ngIf="formBanquier.controls['numTel'].errors?.['required']">
+                Numéro de téléphone obligatoire
+            </div>
+            <div class="text-danger" *ngIf="formBanquier.controls['numTel'].errors?.['pattern']">
+                Renseignez un numero de telephone valide (+33)
+            </div>
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary" (click)="this.updateBanquier()" [disabled]="formBanquier.invalid">Modifier</button>
+        </div>
+    </form>
+</div>

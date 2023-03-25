@@ -5,13 +5,21 @@ import { HeaderMenuComponent } from './header-menu/header-menu.component';
 import { EspaceAdministrationComponent } from './espace-administration.component';
 import { RouterModule, Routes } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { FormInfoClientComponent } from 'src/app/shared/form-info-client/form-info-client.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ConsultationAdmininfopersoComponent } from './consultation-admininfoperso/consultation-admininfoperso.component';
 
 const route:Routes = [
   {
     path: '',
     component: GestionClientComponent
+  },
+  {
+    path: 'gestionClient',
+    component: GestionClientComponent
+  },
+  {
+    path:'detailBanquier',
+    component:ConsultationAdmininfopersoComponent
   }
 ];
 
@@ -19,13 +27,15 @@ const route:Routes = [
   declarations: [
     HeaderMenuComponent,
     GestionClientComponent,
-    EspaceAdministrationComponent
+    EspaceAdministrationComponent,
+    ConsultationAdmininfopersoComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(route),
     ReactiveFormsModule,
     SharedModule
-  ]
+  ],
+  exports: [EspaceAdministrationComponent]
 })
 export class AdministrationModule { }
